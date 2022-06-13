@@ -1,4 +1,4 @@
-# カタログ課題2「打刻で案件管理」
+# カタログ課題3「＠local」
 
 ## 環境
 * Ruby 3.0.1
@@ -38,4 +38,5 @@ $ http://localhost:3000/
 ![要件定義3ER図 drawio](https://user-images.githubusercontent.com/75299872/173313079-62490e2e-fa38-40e1-bfea-b9e9dc00782a.png)
 
 ### 画面遷移図
-![要件定義3画面遷移図 drawio](https://user-images.githubusercontent.com/75299872/173313273-9120734d-7e8a-4e8a-a9d7-933b995e8e93.png)
+![要件定義3画面遷移図 drawio](https://user-images.githubusercontent.com/75299872/173316624-8b1b4d01-b1f1-47b0-bc2f-31becfcdcfd5.png)
+

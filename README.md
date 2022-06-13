@@ -38,5 +38,6 @@ $ http://localhost:3000/
 ![要件定義3ER図 drawio](https://user-images.githubusercontent.com/75299872/173313079-62490e2e-fa38-40e1-bfea-b9e9dc00782a.png)
 
 ### 画面遷移図
-![要件定義3画面遷移図 drawio](https://user-images.githubusercontent.com/75299872/173316624-8b1b4d01-b1f1-47b0-bc2f-31becfcdcfd5.png)
+![要件定義3画面遷移図 drawio](https://user-images.githubusercontent.com/75299872/173320912-f19648cc-359a-41ae-b3af-73b312fb657e.png)
+
 

@@ -1,0 +1,36 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5"><%= t('.title') %></h3>
+            
+            <div class="row justify-content-center">
+              <h5 class="col-md-4"><%= User.human_attribute_name :name %>:</h5>
+              <h6 class="col-md-4"><%= @user.name %></h6>
+            </div>
+
+            <div class="row justify-content-center">
+              <h5 class="col-md-4"><%= User.human_attribute_name :email %>:</h5>
+              <h6 class="col-md-4"><%= @user.email %></h6>
+            </div>
+
+            <div class="row justify-content-center mt-4">
+              <div class="col-md-3 mt-4">
+                <%= link_to t('helpers.links.edit'), edit_user_path(@user), class:"btn btn-default btn-lg text-white"%>
+              </div>
+              <div class="col-md-4 mt-4">
+                <%= link_to "ログアウト", session_path, method: :delete, class:"btn btn-secondary btn-lg text-white"%>
+              </div>
+              <div class="col-md-3 mt-4">
+                <%= link_to t('helpers.links.destroy'), user_path, method: :delete, data: { confirm: t('common.confirm_destroy') }, class:"btn btn-outline-secondary btn-lg"%>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,24 @@
+<%= form_with(model: user, local: true, style:"width: 23rem;") do |form| %>
+  <%= render 'layouts/errors', object: user %>
+
+  <div class="form-outline mb-3">
+    <%= form.text_field :name, id:"name", class:"form-control", autofocus: true, autocomplete: "name", placeholder:"ユーザー名", required: true, maxlength: "30" %>
+  </div>
+
+  <div class="form-outline mb-3">
+    <%= form.email_field :email, class:"form-control", autofocus: true, autocomplete: "email", placeholder:"メールアドレス", required: true, maxlength:"255" %>
+  </div>
+
+  <div class="form-outline mb-3">
+    <%= form.password_field :password, class:"form-control", autocomplete: "current-password", placeholder:"新しいパスワード", required: true, maxlength:"255", minlength: "6"%>
+  </div>
+
+  <div class="form-outline mb-3">
+    <%= form.password_field :password_confirmation, class:"form-control", autocomplete: "current-password", placeholder:"新しいパスワード(確認)", required: true, maxlength:"255",minlength: "6"%>
+  </div>
+
+  <div class="text-center mt-4 pt-2">
+    <%= form.submit "決定", class:"btn btn-default text-white btn-lg", style:"padding-left: 2.5rem; padding-right: 2.5rem;" %>
+  </div>
+
+<% end %>

@@ -13,3 +13,15 @@
  *= require_tree .
  *= require_self
  */
+
+.btn-default {
+    background-color: #F15B55;
+}
+
+.card{
+    border-radius:15px;
+    background-color:#fefefe;
+    display:flex;
+    justify-content:center;
+    box-shadow: 23px 17px 64px -14px rgba(90,87,87,0.75);
+}

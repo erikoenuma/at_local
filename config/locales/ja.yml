@@ -10,21 +10,32 @@ ja:
         password_confirmation: 'パスワード（確認）'
   users:
     new:
-      title: '新規アカウント登録'
+      title: 'アカウント作成'
+    new_user:
+      title: '新規利用者アカウント登録'
+    new_shop:
+      title: '新規店舗アカウント登録'
     show:
       title: 'アカウント詳細'
     edit:
       title: 'アカウント編集'
     create:
       success: 'ユーザー登録が完了しました'
+    create_shop:
+      success: '店舗ユーザー登録が完了しました'
     update:
       success: 'アカウント情報を更新しました'
     destroy:
       success: 'アカウントを削除しました'
   sessions:
     new:
-      title: 'ログイン'
+      title: '利用者ログイン'
+    new_shop:
+      title: '店舗ログイン'
     create:
+      success: 'ログインしました'
+      failure: 'メールアドレスまたはパスワードが間違っています'
+    create_shop:
       success: 'ログインしました'
       failure: 'メールアドレスまたはパスワードが間違っています'
     destroy:

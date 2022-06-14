@@ -18,6 +18,17 @@
     background-color: #F15B55;
 }
 
+.btn-outline-default {
+    background-color: #fefefe;
+    border-color: #F15B55;
+    color: #F15B55;
+}
+
+.btn-outline-default:hover {
+    background-color: #F15B55;
+    color: #fefefe;
+}
+
 .card{
     border-radius:15px;
     background-color:#fefefe;

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :login_required, only: [:create, :new]
+  skip_before_action :login_required, only: [:create, :new, :new_shop, :create_shop, :new_user]
   before_action :set_user, only: %i[ show edit update destroy ]
   before_action :correct_user, only: [:show, :edit, :update, :destroy]
 
@@ -9,6 +9,14 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+  end
+
+  def new_user
+    @user = User.new
+  end
+
+  # 店舗アカウント作成
+  def new_shop
     @user = User.new
   end
 
@@ -31,6 +39,23 @@ class UsersController < ApplicationController
     end
   end
 
+  # 店舗アカウント作成
+  def create_shop
+    @user = User.new(user_params)
+    respond_to do |format|
+      if @user.save
+        # 店舗を保存
+        @user.build_shop(name: @user.name).save!
+        flash[:success] = t('.success')
+        log_in(@user)
+        format.html { redirect_to user_url(@user) }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
   # PATCH/PUT /users/1 or /users/1.json
   def update
     respond_to do |format|
@@ -49,7 +74,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       flash[:success] = t('.success')
-      format.html { redirect_to new_user_path }
+      format.html { redirect_to new_session_path }
     end
   end
 

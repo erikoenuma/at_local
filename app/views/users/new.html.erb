@@ -1,22 +1,26 @@
 <section class="vh-100">
-  <div class="container-fluid h-custom">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-          class="img-fluid" alt="Sample image">
-      </div>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <div class="divider d-flex align-items-center my-4">
-            <h4 class="text-center fw-bold mx-3 mb-0"><%= t('.title') %></h4>
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card shadow-2-strong card-registration mb-5" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5"><%= t('.title') %></h3>
+
+            <h5 class="text-center mb-5 text-secondary">ご利用目的を選んでください</h5>
+
+            <div class="row justify-content-center">
+                <div class="col-md-4 h-100">
+                    <%= link_to "買い物する", new_user_users_path, class:"btn btn-lg btn-outline-default" %>
+                </div>
+                <div class="col-md-4 h-100">
+                    <%= link_to "出店する", new_shop_users_path, class:"btn btn-lg btn-outline-default" %>
+                </div>
+            </div>
+
+          </div>
         </div>
-
-      <%= render 'form', user: @user %>
-
-      <div class="text-center mt-4">
-        <p class="small mt-2 pt-1 mb-0">会員登録がお済みの方は<%= link_to "こちら", new_session_path %></p>
-      </div>
-
       </div>
     </div>
   </div>
 </section>
+

@@ -16,4 +16,8 @@ module SessionsHelper
         user == current_user
     end
 
+    def shop_user?(user)
+        user.shop != nil
+    end
+
 end

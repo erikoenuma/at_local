@@ -1,5 +1,18 @@
 Rails.application.routes.draw do
-  resources :users, except: [:index]
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :shops
+  resources :users, except: [:index] do
+    collection do
+      get :new_shop
+      get :new_user
+      post :create_shop
+    end
+  end
+
+  resources :sessions, only: [:new, :create, :destroy] do
+    collection do
+      get :new_shop
+      post :create_shop
+    end
+  end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

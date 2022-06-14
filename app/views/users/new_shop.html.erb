@@ -1,0 +1,45 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <div class="divider d-flex align-items-center my-4">
+            <h4 class="text-center fw-bold mx-3 mb-0"><%= t('.title') %></h4>
+        </div>
+
+        <%= form_with(model: @user, url: create_shop_users_path, method: 'POST', local: true, style:"width: 23rem;") do |form| %>
+            <%= render 'layouts/errors', object: @user %>
+
+            <div class="form-outline mb-3">
+                <%= form.text_field :name, id:"name", class:"form-control", autofocus: true, autocomplete: "name", placeholder:"ユーザー名", required: true, maxlength: "30" %>
+            </div>
+
+            <div class="form-outline mb-3">
+                <%= form.email_field :email, class:"form-control", autofocus: true, autocomplete: "email", placeholder:"メールアドレス", required: true, maxlength:"255" %>
+            </div>
+
+            <div class="form-outline mb-3">
+                <%= form.password_field :password, class:"form-control", autocomplete: "current-password", placeholder:"新しいパスワード", required: true, maxlength:"255", minlength: "6"%>
+            </div>
+
+            <div class="form-outline mb-3">
+                <%= form.password_field :password_confirmation, class:"form-control", autocomplete: "current-password", placeholder:"新しいパスワード(確認)", required: true, maxlength:"255",minlength: "6"%>
+            </div>
+
+            <div class="text-center mt-4 pt-2">
+                <%= form.submit "決定", class:"btn btn-default text-white btn-lg", style:"padding-left: 2.5rem; padding-right: 2.5rem;" %>
+            </div>
+
+        <% end %>
+
+        <div class="text-center mt-4">
+            <p class="small mt-2 pt-1 mb-0">会員登録がお済みの方は<%= link_to "こちら", new_shop_sessions_path %></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -17,7 +17,11 @@
         </button>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
           <% if logged_in? %>
-            <%= render "layouts/navigation/user_nav" %>
+            <% if shop_user?(current_user) %>
+              <%= render "layouts/navigation/shop_nav"%>
+            <% else %>
+              <%= render "layouts/navigation/user_nav" %>
+            <% end %>
           <% else %>
             <%= render "layouts/navigation/log_out_nav" %>
           <% end %>

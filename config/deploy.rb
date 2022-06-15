@@ -7,7 +7,6 @@ set :repo_url, "https://github.com/erikoenuma/at_local.git"
 set :bundle_without, %w{test}.join(':')
 
 set :rbenv_version, '3.0.1'
-set :linked_files, %w{config/secrets.yml .env}
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

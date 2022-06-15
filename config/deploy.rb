@@ -7,7 +7,16 @@ set :repo_url, "https://github.com/erikoenuma/at_local.git"
 set :bundle_without, %w{test}.join(':')
 
 set :rbenv_version, '3.0.1'
+# masterkeyを本番環境で読み取る
 set :linked_files, fetch(:linked_files, []).push("config/master.key")
+# releasesディレクトリ内で保持するバージョンの個数を設定
+set :keep_releases, 5
+set :rbenv_ruby, '3.0.1'
+# エラーのログレベル
+set :log_level, :info
+
+after 'deploy:published', 'deploy:seed'   # 9
+after 'deploy:finished', 'deploy:restart'   # 10
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

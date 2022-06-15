@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :shops
+  root 'sessions#new'
+
+  resources :shops do
+    member do
+      resources :items
+    end
+  end
   resources :users, except: [:index] do
     collection do
       get :new_shop
@@ -14,5 +20,8 @@ Rails.application.routes.draw do
       post :create_shop
     end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get "/prefecture", to: 'places#prefectures'
+  get "/areas", to: 'places#areas'
+
 end

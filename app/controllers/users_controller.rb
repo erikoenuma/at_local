@@ -34,7 +34,7 @@ class UsersController < ApplicationController
         log_in(@user)
         format.html { redirect_to user_url(@user) }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new_user, status: :unprocessable_entity }
       end
     end
   end
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
         log_in(@user)
         format.html { redirect_to user_url(@user) }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new_shop, status: :unprocessable_entity }
       end
     end
 

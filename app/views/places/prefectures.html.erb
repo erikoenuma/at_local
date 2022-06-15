@@ -1,0 +1,26 @@
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-11 mx-auto">
+            <div class="row mt-4 align-items-center">
+              <div class="col-6"><h1><%= t('.title') %></h1></div>
+              <%# <div class="col-3"><%= link_to t('helpers.links.back'), class:"btn btn-primary text-white btn-sm my-5"</div> %>
+            </div>
+
+            <% @regions.each do |place| %>
+                <div class="d-flex bg-light mt-5">
+                    <h4 class="my-2 ms-4"><%= place.region %></h4>
+                </div>
+                <div class="d-flex mx-3 my-3">
+                    <% prefectures(place.region).each do |prefecture| %>
+                        <%# ransack %>
+                        <%= search_form_for @q, url: areas_path do |f|%>
+                            <%= f.hidden_field :prefecture_eq, :value => prefecture.prefecture %>
+                            <%= f.submit "#{prefecture.prefecture}", class:"btn btn-outline-default" %>
+                        <% end %>
+                    <% end %>
+                </div>
+            <% end %>
+
+        </div>
+    </div>
+</div>

@@ -1,48 +1,29 @@
 class ShopsController < ApplicationController
-  before_action :set_shop, only: %i[ show edit update destroy ]
+  before_action :set_shop, except: [:index]
 
-  # GET /shops or /shops.json
   def index
-    @shops = Shop.all
+    @q = Shop.ransack(params[:q])
+    @area = Place.find(params[:q][:place_id_eq])
+    @shops = @q.result
   end
 
   # GET /shops/1 or /shops/1.json
   def show
-  end
-
-  # GET /shops/new
-  def new
-    @shop = Shop.new
+    @items = @shop.items
   end
 
   # GET /shops/1/edit
   def edit
   end
 
-  # POST /shops or /shops.json
-  def create
-    @shop = Shop.new(shop_params)
-
-    respond_to do |format|
-      if @shop.save
-        format.html { redirect_to shop_url(@shop), notice: "Shop was successfully created." }
-        format.json { render :show, status: :created, location: @shop }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @shop.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # PATCH/PUT /shops/1 or /shops/1.json
   def update
     respond_to do |format|
       if @shop.update(shop_params)
-        format.html { redirect_to shop_url(@shop), notice: "Shop was successfully updated." }
-        format.json { render :show, status: :ok, location: @shop }
+        flash[:success] = t('.success')
+        format.html { redirect_to shop_url(@shop) }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @shop.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,8 +33,8 @@ class ShopsController < ApplicationController
     @shop.destroy
 
     respond_to do |format|
-      format.html { redirect_to shops_url, notice: "Shop was successfully destroyed." }
-      format.json { head :no_content }
+      flash[:success] = t('.success')
+      format.html { redirect_to shops_url }
     end
   end
 
@@ -65,6 +46,6 @@ class ShopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shop_params
-      params.require(:shop).permit(:name, :address, :access, :introduction, :cancelable_days_before, :private)
+      params.require(:shop).permit(:name, :address, :access, :introduction, :cancelable_days_before, :private, :image)
     end
 end

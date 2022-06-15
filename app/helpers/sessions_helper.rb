@@ -16,8 +16,8 @@ module SessionsHelper
         user == current_user
     end
 
+    # 店舗アカウントかどうか
     def shop_user?(user)
         user.shop != nil
     end
-
 end

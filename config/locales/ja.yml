@@ -8,6 +8,17 @@ ja:
         email: 'メールアドレス'
         password: 'パスワード'
         password_confirmation: 'パスワード（確認）'
+      shop:
+        name: '店舗名'
+        address: '住所'
+        access: 'アクセス'
+        introduction: '紹介文'
+        cancelable_days_before: 'キャンセル可能日'
+        private: '公開設定'
+      place:
+        region: '地方'
+        prefecture: '都道府県'
+        area: 'エリア'
   users:
     new:
       title: 'アカウント作成'
@@ -40,6 +51,12 @@ ja:
       failure: 'メールアドレスまたはパスワードが間違っています'
     destroy:
       success: 'ログアウトしました'
+  shops:
+    edit:
+      title: '店舗編集'
+  places:
+    prefectures:
+      title: '都道府県を選択'
     
   helpers:
     submit:

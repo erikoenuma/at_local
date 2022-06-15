@@ -1,44 +1,54 @@
 <%= form_with(model: shop, local: true) do |form| %>
-  <% if shop.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
+  <%= render 'layouts/errors', object: shop %>
 
-      <ul>
-        <% shop.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-outline mb-3">
+    <%= form.label, :name %>
+    <%= form.text_field :name, class:"form-control", autofocus: true, autocomplete: "name", placeholder:"ユーザー名", required: true, maxlength: "30" %>
   </div>
 
   <div class="field">
     <%= form.label :address %>
-    <%= form.text_field :address %>
+    <%= form.text_field :address, class:"form-control", autofocus: true, autocomplete: "address", placeholder:"住所", required: true, maxlength: "255" %>
   </div>
 
   <div class="field">
     <%= form.label :access %>
-    <%= form.text_field :access %>
+    <%= form.text_field :access, class:"form-control", autofocus: true, autocomplete: "access", placeholder:"〇〇駅から徒歩5分", required: true, maxlength: "255" %>
   </div>
 
   <div class="field">
     <%= form.label :introduction %>
-    <%= form.text_field :introduction %>
+    <%= form.text_area :introduction, class:"form-control", autofocus: true, maxlength: "1000", rows:"5" %>
   </div>
 
-  <div class="field">
-    <%= form.label :cancelable_days_before %>
-    <%= form.number_field :cancelable_days_before %>
-  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <%= form.label :cancelable_days_before, class:"mb-2" %>
+      <select class="custom-select custom-select-sm mb-3", name="cancelable_days_before">
+        <option value="8">キャンセル不可</option>
+        <option value= "0">当日</option>
+        <% for (var i = 1; i < 8)%>
+          <option value= <%= i %>><%= i %>日</option>
+        <% end %>
+      </select>
+    </div>
 
-  <div class="field">
-    <%= form.label :private %>
-    <%= form.check_box :private %>
+    <div class="col-md-6 mb-4">
+      <div class="form-outline">
+        <%= form.label :private, class:"mb-2 pb-1" %>  
+        <div class="custom-control custom-radio custom-control-inline">  
+          <input class="custom-control-input" type="radio" name="private" id="true"
+            value="true" checked/>
+          <label class="custom-control-label" for="true">公開</label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline">
+            <input class="custom-control-input" type="radio" name="private" id="false"
+            value="false" />
+            <label class="custom-control-label" for="false">非公開</label>
+        </div>       
+      </div>
+    </div>
+
   </div>
 
   <div class="actions">

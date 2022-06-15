@@ -9,6 +9,7 @@ class ShopsController < ApplicationController
 
   # GET /shops/1 or /shops/1.json
   def show
+    @items = @shop.items
   end
 
   # GET /shops/1/edit

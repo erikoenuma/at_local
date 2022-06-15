@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :shops
+
+  resources :shops do
+    member do
+      resources :items
+    end
+  end
   resources :users, except: [:index] do
     collection do
       get :new_shop

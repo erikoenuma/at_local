@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_14_053040) do
+ActiveRecord::Schema.define(version: 2022_06_15_023029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "places", force: :cascade do |t|
+    t.string "region", null: false
+    t.string "prefecture", null: false
+    t.string "area", null: false
+  end
 
   create_table "shops", force: :cascade do |t|
     t.string "name", null: false
@@ -21,10 +27,12 @@ ActiveRecord::Schema.define(version: 2022_06_14_053040) do
     t.string "access"
     t.string "introduction"
     t.integer "cancelable_days_before"
-    t.boolean "private", default: false, null: false
+    t.boolean "private", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
+    t.bigint "place_id"
+    t.index ["place_id"], name: "index_shops_on_place_id"
     t.index ["user_id"], name: "index_shops_on_user_id"
   end
 
@@ -36,5 +44,6 @@ ActiveRecord::Schema.define(version: 2022_06_14_053040) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "shops", "places"
   add_foreign_key "shops", "users"
 end

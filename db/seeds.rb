@@ -1,7 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+[   ["北海道", "旭川", "中心部（宮前～10条通）"],
+    ["北海道", "旭川", "永山・末広・春光・大町周辺"],
+    ["北海道", "旭川", "豊岡・東光・南周辺"],
+    ["北海道", "旭川", "神楽・神居・縁町・旭神周辺"],
+    ["北海道", "旭川", "旭川周辺（富良野・名寄）"],
+    ["関東", "埼玉県", "大宮・浦和・川口"],
+    ["関東", "埼玉県", "上尾・熊谷・本庄"],
+    ["関東", "埼玉県", "赤羽・板橋・王子・巣鴨"],
+    ["関東", "埼玉県", "西新井・草加・越谷", "春日部", "久喜"],
+    ["関東", "埼玉県", "大山・成増・志木・川越・東松山"],
+    ["関東", "埼玉県", "練馬・ひばりが丘・所沢・飯能・狭山"],
+    ["関東", "埼玉県", "東大宮・古川・小山"],
+    ["関東", "埼玉県", "流山・三郷・野田"]
+].each do |region, prefecture, area|
+    Place.create({
+        region: region,
+        prefecture: prefecture,
+        area: area
+    })
+end

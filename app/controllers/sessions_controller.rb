@@ -12,13 +12,14 @@ class SessionsController < ApplicationController
     # 利用者ログイン
     def create
         user = User.find_by(email: params[:session][:email].downcase)
-        if user.shop != nil
-            flash[:danger] = "店舗ログインページからログインしてください"
-            render :new
-            return
-        end
 
         if user&.authenticate(params[:session][:password])
+            if user.shop != nil
+                flash[:danger] = "店舗ログインページからログインしてください"
+                render :new
+                return
+            end
+            
             log_in(user)
             flash[:success] = t('.success')
             redirect_to user_path(user.id)
@@ -31,13 +32,14 @@ class SessionsController < ApplicationController
     # 店舗ログイン
     def create_shop
         user = User.find_by(email: params[:session][:email].downcase)
-        if user.shop == nil
-            flash[:danger] = "利用者ログインページからログインしてください"
-            render :new_shop
-            return
-        end
 
         if user&.authenticate(params[:session][:password])
+            if user.shop == nil
+                flash[:danger] = "利用者ログインページからログインしてください"
+                render :new_shop
+                return
+            end
+
             log_in(user)
             flash[:success] = t('.success')
             redirect_to user_path(user.id)

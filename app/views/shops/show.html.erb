@@ -1,34 +1,28 @@
-<p id="notice"><%= notice %></p>
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading"><%= @shop.name %></h1>
+    <span class="lead text-muted">
+        <%= @shop.access %><br />
+        <%= @shop.address %>
+    </span>
+  </div>
+</section>
 
-<p>
-  <strong>Name:</strong>
-  <%= @shop.name %>
-</p>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-11 mx-auto">
 
-<p>
-  <strong>Address:</strong>
-  <%= @shop.address %>
-</p>
-
-<p>
-  <strong>Access:</strong>
-  <%= @shop.access %>
-</p>
-
-<p>
-  <strong>Introduction:</strong>
-  <%= @shop.introduction %>
-</p>
-
-<p>
-  <strong>Cancelable days before:</strong>
-  <%= @shop.cancelable_days_before %>
-</p>
-
-<p>
-  <strong>Private:</strong>
-  <%= @shop.private %>
-</p>
-
-<%= link_to 'Edit', edit_shop_path(@shop) %> |
-<%= link_to 'Back', shops_path %>
+            <%# 紹介文 %>
+            <div class="d-flex btn-outline-default">
+              <%= @shop.introduction %>
+            </div>
+              
+            <%# 商品一覧 %>
+            <div class="row mt-4 align-items-center">
+              <div class="col-4"><h3>商品一覧</h3></div>
+              <div class="col-6">キャンセル：<%= @shop.cancelable_days_before %>日前まで可能</div>
+            </div>
+            
+        </div>
+    </div>
+</div>

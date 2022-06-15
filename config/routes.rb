@@ -14,5 +14,8 @@ Rails.application.routes.draw do
       post :create_shop
     end
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get "/prefecture", to: 'places#prefectures'
+  get "/areas", to: 'places#areas'
+
 end

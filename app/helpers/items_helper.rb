@@ -5,14 +5,23 @@ module ItemsHelper
         if item.id.nil?
             shop_path(shop)
         else
-            item_path(item)
+            item_path(shop, item)
+        end
+    end
+
+    # フォームのsubmitのurl
+    def form_submit_url(shop, item) 
+        if item.id.nil?
+            items_path(shop)
+        else  
+            item_path(shop, item)
         end
     end
 
     # 画像が無い時はnoimageを出す
-    # def image_path(image)
-    #     image == nil? ? "noimage.png" : rails_blob_path(image)
-    # end
+    def image_path(item)
+        item.image.present? ? rails_blob_path(item.image) : 'noimage.png'
+    end
 
     # 在庫の表示の仕方
     def counts_string(counts)

@@ -1,1 +1,1 @@
-import "../upload_image.js"
+import "./upload_shop_image.js"

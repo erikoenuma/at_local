@@ -4,13 +4,19 @@
         <div class="row">
 
             <% items.each do |item| %>
-            <div class="col-md-4">
+            <div class="col-md-4 card-group">
                 <a href="/shops/<%= shop.id %>/items/<%= item.id %>" class="card mb-4 box-shadow">
                     <img class="card-img-top" src=<%= rails_blob_path(item.image) if item.image.present? %> alt="Card image cap">
                     <div class="card-body align-items-center">
-                        <p class="card-text"><%= item.name %></p>
+                        <h5 class="card-text"><%= item.name %>
+                            <% if item.private %>
+                                <span class="badge rounded-pill btn-default">非公開</span>
+                            <% else %>
+                                <span class="badge rounded-pill bg-success-default">公開中</span>
+                            <% end %>
+                        </h5>
                         <div class="text-end">
-                            <small class="text-default"><%= item.price %>円</small><br />
+                            <small class="text-default fw-bold"><%= item.price %>円</small><br />
                             <small class="fw-bold"><%= counts_string(item.counts) %></small>
                         </div>
                     </div>

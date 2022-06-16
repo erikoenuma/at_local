@@ -18,7 +18,13 @@
 
             <%# 店舗詳細 %>
             <div class="row align-items-center">
-              <h1 class="col-md-3">店舗詳細</h1>
+              <h1 class="col-md-5">店舗詳細
+                <% if @shop.private %>
+                  <span class="badge rounded-pill btn-default">非公開</span>
+                <% else %>
+                  <span class="badge rounded-pill bg-success-default">公開中</span>
+                <% end %>
+              </h1>
               <%= link_to t('helpers.links.edit'), edit_shop_path(@shop), class:"btn btn-default col-md-1 h-50" %>
             </div>
             

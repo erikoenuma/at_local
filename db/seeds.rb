@@ -60,7 +60,7 @@ end
 end
 
 [
-    ["1","item", 100, "descriptionnnnnnnnnnnnnnnnnnnnnn", false, 100],
+    ["1","item", 100, "descriptionnnnnnnnnnnnnnnnnnnnnn", false, 100,],
     ["1","item2", 10000, "descriptionnnnnnnnnnnnnnnnnnnnnn", false, 100],
     ["1","item3", 1000, "descriptionnnnnnnnnnnnnnnnnnnnnn", false, 100],
     ["1","item4", 100, "descriptionnnnnnnnnnnnnnnnnnnnnn", false, 100],
@@ -70,7 +70,7 @@ end
     ["2","item3", 100, "descriptionnnnnnnnnnnnnnnnnnnnnn", false, 100],
     ["2","item4", 100, "descriptionnnnnnnnnnnnnnnnnnnnnn", false, 100],
     ["2","item5", 100, "descriptionnnnnnnnnnnnnnnnnnnnnn", false, 100]
-].each do |shop_id, name, price, description, private, counts|
+].each do |shop_id, name, price, description, private, counts, image|
     Item.create({ 
         shop_id: shop_id,
         name: name,
@@ -79,4 +79,13 @@ end
         private: private,
         counts: counts
      })
+end
+
+# 初期画像をセット
+Item.all.each do |item|
+    item.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.png')), filename: 'noimage.png')
+end
+
+Shop.all.each do |shop|
+    shop.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.png')), filename: 'noimage.png')
 end

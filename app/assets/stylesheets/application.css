@@ -34,6 +34,11 @@
     color: #F15B55;
 }
 
+.bg-success-default {
+    background-color: #8CD84C;
+    color: #fefefe;
+}
+
 .card-form{
     border-radius:15px;
     background-color:#fefefe;

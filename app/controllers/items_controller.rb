@@ -22,6 +22,11 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
+        # 画像がアップロードされなかったらnoImageをattachする
+        if @item.image.nil?
+          @item.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.png')), filename: 'noimage.png')
+        end
+        
         flash[:success] = t('.success')
         format.html { redirect_to shop_path(@shop) }
       else
@@ -35,7 +40,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       if @item.update(item_params)
         flash[:success] = t('.success')
-        format.html { redirect_to item_url(@item) }
+        format.html { redirect_to item_url(@shop, @item) }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

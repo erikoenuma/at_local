@@ -45,7 +45,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         # 店舗を保存
-        @user.build_shop(name: @user.name).save!
+        @shop = @user.build_shop(name: @user.name)
+        @shop.image.attach(io: File.open(Rails.root.join('app/assets/images/noimage.png')), filename: 'noimage.png')
+        @shop.save!
+        
         flash[:success] = t('.success')
         log_in(@user)
         format.html { redirect_to user_url(@user) }

@@ -11,10 +11,10 @@
         <a class="nav-link" href="#">在庫編集</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">商品追加</a>
+        <a class="nav-link" href="/shops/<%= current_user.shop.id %>/items/new">商品追加</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">店舗詳細</a>
+        <a class="nav-link" href="/shops/<%= current_user.shop.id %>">店舗詳細</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href='/users/<%= current_user.id %>'>アカウント</a>

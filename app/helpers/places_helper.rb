@@ -9,4 +9,5 @@ module PlacesHelper
     def place(area)
         return Place.where(:area => area).first
     end
+
 end

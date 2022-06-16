@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   resources :shops do
     member do
-      resources :items
+      resources :items, param: :item_id
+      get :top
     end
   end
   resources :users, except: [:index] do

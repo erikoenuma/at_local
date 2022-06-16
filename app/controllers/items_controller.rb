@@ -1,18 +1,14 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show edit update destroy ]
 
-  # GET /items or /items.json
-  def index
-    @items = Item.all
-  end
-
   # GET /items/1 or /items/1.json
   def show
   end
 
   # GET /items/new
   def new
-    @item = Item.new
+    @shop = Shop.find(params[:id])
+    @item = @shop.items.new
   end
 
   # GET /items/1/edit
@@ -21,15 +17,15 @@ class ItemsController < ApplicationController
 
   # POST /items or /items.json
   def create
-    @item = Item.new(item_params)
+    @shop = Shop.find(params[:id])
+    @item = @shop.items.new(item_params)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to item_url(@item), notice: "Item was successfully created." }
-        format.json { render :show, status: :created, location: @item }
+        flash[:success] = t('.success')
+        format.html { redirect_to shop_path(@shop) }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -38,11 +34,10 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to item_url(@item), notice: "Item was successfully updated." }
-        format.json { render :show, status: :ok, location: @item }
+        flash[:success] = t('.success')
+        format.html { redirect_to item_url(@item) }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -52,19 +47,20 @@ class ItemsController < ApplicationController
     @item.destroy
 
     respond_to do |format|
-      format.html { redirect_to items_url, notice: "Item was successfully destroyed." }
-      format.json { head :no_content }
+      flash[:success] = t('.success')
+      format.html { redirect_to shop_path(@shop) }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @shop = Shop.find(params[:id])
+      @item = @shop.items.find(params[:item_id])
     end
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:shop_id, :name, :price, :description, :private, :counts)
+      params.require(:item).permit(:shop_id, :name, :price, :description, :private, :counts, :image)
     end
 end

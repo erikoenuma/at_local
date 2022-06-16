@@ -1,34 +1,43 @@
-<p id="notice"><%= notice %></p>
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div class="card-form shadow-2-strong card-registration mb-5" style="border-radius: 15px;">
+          <div class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5"><%= t('.title') %></h3>
 
-<p>
-  <strong>Shop:</strong>
-  <%= @item.shop_id %>
-</p>
+              <div class="row" style="height:45%">
+                <div class="col-md-6">
+                  <img class="item-image" src=<%= rails_blob_path(@item.image) if @item.image.present? %>>
+                </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
+                <div class="col-md-6">
+                  <label class="mb-3 fw-bold"><%= Item.human_attribute_name :name %></label>
+                  <p><%= @item.name %></p>
+                  <label class="mb-3 fw-bold"><%= Item.human_attribute_name :price %></label>
+                  <p><%= @item.name %>円</p>
+                </div>
+              </div>
 
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
+              <div class="col-md-12">
+                  <label class="mb-3 fw-bold"><%= Item.human_attribute_name :description %></label>
+                  <p><%= @item.description %></p>
+              </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
+              <div class="col-md-6 mb-4">
+                  <label class="mb-3 fw-bold"><%= Item.human_attribute_name :private %></label>
+                  <p><%= @item.private ? "非公開" : "公開" %></p>
+              </div>
 
-<p>
-  <strong>Private:</strong>
-  <%= @item.private %>
-</p>
+              <div class="row justify-content-center my-5">
+                <%= link_to t('helpers.links.back'), shop_path(@shop), class: "btn btn-light text-black col-md-2 mx-2"%>
+                <%= link_to t('helpers.links.edit'), edit_item_path(@item), class: "btn btn-default col-md-2 mx-2"%>
+                <%= link_to t('helpers.links.destroy'), item_path(@item), method: :delete, data: { confirm: t('common.confirm_destroy') }, class:"btn btn-outline-secondary col-md-2 mx-2"%>
+              </div>
 
-<p>
-  <strong>Counts:</strong>
-  <%= @item.counts %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

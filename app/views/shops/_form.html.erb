@@ -2,56 +2,57 @@
   <%= render 'layouts/errors', object: shop %>
 
   <div class="form-outline mb-3">
-    <%= form.label, :name %>
+    <%= form.label :name, class: 'mb-2' %>
     <%= form.text_field :name, class:"form-control", autofocus: true, autocomplete: "name", placeholder:"ユーザー名", required: true, maxlength: "30" %>
   </div>
 
   <div class="field">
-    <%= form.label :address %>
+    <%= form.label :address, class:"mb-2" %>
     <%= form.text_field :address, class:"form-control", autofocus: true, autocomplete: "address", placeholder:"住所", required: true, maxlength: "255" %>
   </div>
 
   <div class="field">
-    <%= form.label :access %>
+    <%= form.label :access, class:"mb-2" %>
     <%= form.text_field :access, class:"form-control", autofocus: true, autocomplete: "access", placeholder:"〇〇駅から徒歩5分", required: true, maxlength: "255" %>
   </div>
 
   <div class="field">
-    <%= form.label :introduction %>
+    <%= form.label :introduction, class: "mb-2" %>
     <%= form.text_area :introduction, class:"form-control", autofocus: true, maxlength: "1000", rows:"5" %>
   </div>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
       <%= form.label :cancelable_days_before, class:"mb-2" %>
-      <select class="custom-select custom-select-sm mb-3", name="cancelable_days_before">
+      <select class="form-select mb-3", name="cancelable_days_before">
         <option value="8">キャンセル不可</option>
         <option value= "0">当日</option>
-        <% for (var i = 1; i < 8)%>
-          <option value= <%= i %>><%= i %>日</option>
+        <% for i in 1..7 do %>
+          <option value= <%= i %>><%= i %>日前まで</option>
         <% end %>
       </select>
     </div>
 
     <div class="col-md-6 mb-4">
-      <div class="form-outline">
-        <%= form.label :private, class:"mb-2 pb-1" %>  
-        <div class="custom-control custom-radio custom-control-inline">  
-          <input class="custom-control-input" type="radio" name="private" id="true"
+      <%= form.label :private, class:"mb-2 pb-1" %>  
+      <div class="form-outline row mx-0">
+        <div class="form-check col-md-4">  
+          <input class="form-check-input" type="radio" name="private" id="false"
             value="true" checked/>
-          <label class="custom-control-label" for="true">公開</label>
+          <label class="form-check-label" for="false">公開</label>
         </div>
-        <div class="custom-control custom-radio custom-control-inline">
-            <input class="custom-control-input" type="radio" name="private" id="false"
+        <div class="form-check col-md-4">
+            <input class="form-check-input" type="radio" name="private" id="true"
             value="false" />
-            <label class="custom-control-label" for="false">非公開</label>
+            <label class="form-check-label" for="true">非公開</label>
         </div>       
       </div>
     </div>
 
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="row justify-content-center my-4">
+    <%= link_to t('helpers.links.back'), shop_path(shop), class: "btn btn-light text-black col-md-2 mx-2"%>
+    <%= form.submit class: "btn btn-default col-md-2 mx-2" %>
   </div>
 <% end %>

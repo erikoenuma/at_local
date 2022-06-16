@@ -7,8 +7,14 @@ class ShopsController < ApplicationController
     @shops = @q.result
   end
 
-  # GET /shops/1 or /shops/1.json
+  # 店舗側から見た店舗詳細画面
   def show
+    @items = @shop.items
+    @place = Place.find(@shop.place_id) if @shop.place_id
+  end
+
+  # 利用者側から見た店舗詳細画面
+  def top
     @items = @shop.items
   end
 

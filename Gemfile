@@ -71,3 +71,6 @@ gem 'pry-rails'
 
 # Unicorn
 gem 'unicorn'
+
+# 画像の表示形式調整
+gem 'image_processing', '~> 1.2'

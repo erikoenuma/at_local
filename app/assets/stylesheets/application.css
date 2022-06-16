@@ -16,6 +16,7 @@
 
 .btn-default {
     background-color: #F15B55;
+    color: #fefefe;
 }
 
 .btn-outline-default {
@@ -27,6 +28,10 @@
 .btn-outline-default:hover {
     background-color: #F15B55;
     color: #fefefe;
+}
+
+.text-default {
+    color: #F15B55;
 }
 
 .card-form{

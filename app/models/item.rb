@@ -5,6 +5,8 @@ class Item < ApplicationRecord
   validates :price, presence: true, numericality: { in:1..999999 }
   validates :description, presence: true, length: { maximum: 1000 }
   validates :private, inclusion: {in: [true, false]}
-  validates :counts, presence: true, numericality: { in:1..9999 }
+  validates :counts, presence: true, numericality: { in:0..9999 }
+
+  has_one_attached :image
 
 end

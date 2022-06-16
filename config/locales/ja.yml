@@ -15,10 +15,17 @@ ja:
         introduction: '紹介文'
         cancelable_days_before: 'キャンセル可能日'
         private: '公開設定'
+        place_id: 'エリア'
       place:
         region: '地方'
         prefecture: '都道府県'
         area: 'エリア'
+      item:
+        name: '商品名'
+        price: '価格'
+        description: '説明'
+        private: '公開設定'
+        counts: '在庫'
   users:
     new:
       title: 'アカウント作成'
@@ -54,9 +61,26 @@ ja:
   shops:
     edit:
       title: '店舗編集'
+    show:
+      title: '店舗詳細'
+    update:
+      success: '店舗情報を更新しました'
   places:
     prefectures:
       title: '都道府県を選択'
+  items:
+    new:
+      title: '商品追加'
+    show:
+      title: '商品詳細'
+    edit:
+      title: '商品編集'
+    create:
+      success: '商品を追加しました'
+    update:
+      success: '商品情報を更新しました'
+    destroy:
+      success: '商品を削除しました'
     
   helpers:
     submit:

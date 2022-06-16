@@ -1,30 +1,81 @@
-<section class="jumbotron text-center">
+<section class="jumbotron text-center" style="background-image:url(<%= rails_blob_path(@shop.image) if @shop.image.present? %>);">
   <div class="container">
-    <h1 class="jumbotron-heading"><%= @shop.name %></h1>
-    <span class="lead text-muted">
-        <%= @shop.access %><br />
-        <%= @shop.address %>
-    </span>
+    <h1 class="jumbotron-heading mb-5"><%= @shop.name %></h1>
+
+    <%= form_with(model: @shop, url: shop_path(@shop), method: 'PUT', local: true) do |form| %>
+      <%# file_fieldの名前を変更 %>
+      <label class="btn btn-default">写真をアップロード  
+        <%= form.file_field :image, style:"display:none" %>
+      </label>
+    <% end %>
+
   </div>
 </section>
 
-<div class="container px-4 px-lg-5">
+<div class="container px-4 px-lg-5 mt-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-11 mx-auto">
 
-            <%# 紹介文 %>
-            <div class="d-flex shop-intro">
-              <%= @shop.introduction %>
+            <%# 店舗詳細 %>
+            <div class="row align-items-center">
+              <h1 class="col-md-3">店舗詳細</h1>
+              <%= link_to t('helpers.links.edit'), edit_shop_path(@shop), class:"btn btn-default col-md-1 h-50" %>
+            </div>
+            
+            <div class="container my-5">
+              <div class="row">
+                <div class="col-md-4 d-flex">
+                  <ol class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-start">                  
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold"><%= Shop.human_attribute_name :name %></div>
+                        <%= @shop.name %>
+                      </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold"><%= Shop.human_attribute_name :place_id %></div>
+                        <%= @place.region %> > <%= @place.prefecture %> > <%= @place.area %>
+                      </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold"><%= Shop.human_attribute_name :address %></div>
+                        <%= @shop.address %>
+                      </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold"><%= Shop.human_attribute_name :access %></div>
+                        <%= @shop.access %>
+                      </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                      <div class="ms-2 me-auto">
+                        <div class="fw-bold"><%= Shop.human_attribute_name :cancelable_days_before %></div>
+                        <%= cancel_string(@shop.cancelable_days_before) %>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+
+                <div class="shop-intro col-md-8 mb-0" style="height:auto">
+                  <h5 class="mb-3 fw-bold">紹介文（トップページに表示されます）</h5>
+                  <%= @shop.introduction %>
+                </div>
+
+              </div>
             </div>
               
             <%# 商品一覧 %>
             <div class="row mt-4 align-items-center">
-              <div class="col-4"><h3>商品一覧</h3></div>
-              <div class="col-6">キャンセル：<%= @shop.cancelable_days_before %>日前まで可能</div>
+              <div class="col-4"><h1>商品一覧</h1></div>
             </div>
 
-            <%= render '/items/index', items: @items %>
+            <%= render '/items/index', items: @items, shop: @shop %>
             
         </div>
     </div>
 </div>
+
+<%= javascript_pack_tag 'shop/application' %>

@@ -13,6 +13,8 @@ set :keep_releases, 5
 set :rbenv_ruby, '3.0.1'
 # エラーのログレベル
 set :log_level, :info
+# S3用
+set :linked_files, %w{config/secrets.yml .env}
 
 after 'deploy:published', 'deploy:seed'
 after 'deploy:finished', 'deploy:restart'

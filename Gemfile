@@ -74,3 +74,7 @@ gem 'unicorn'
 
 # 画像の表示形式調整
 gem 'image_processing', '~> 1.2'
+
+# S3
+gem 'aws-sdk-s3', require: false
+gem 'dotenv-rails'

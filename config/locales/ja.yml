@@ -75,6 +75,10 @@ ja:
       title: '商品詳細'
     edit:
       title: '商品編集'
+    stock:
+      title: '在庫編集'
+    update_stock:
+      success: '在庫を更新しました'
     create:
       success: '商品を追加しました'
     update:

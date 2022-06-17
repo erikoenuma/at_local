@@ -3,10 +3,16 @@ Rails.application.routes.draw do
 
   resources :shops do
     member do
-      resources :items, param: :item_id
+      resources :items, param: :item_id do
+        collection do
+          get :stock
+          put :update_stock
+        end
+      end
       get :top
     end
   end
+  
   resources :users, except: [:index] do
     collection do
       get :new_shop

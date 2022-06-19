@@ -15,6 +15,31 @@ class ItemsController < ApplicationController
   def edit
   end
 
+  # 在庫編集画面
+  def stock 
+    @shop = Shop.find(params[:id])
+    @items = @shop.items
+  end
+
+  # 在庫更新
+  def update_stock
+    @shop = Shop.find(params[:id])
+    @items = @shop.items
+    
+    ids = params[:item].keys
+    counts = params[:item].values
+
+    respond_to do |format|
+      # まとめて更新
+      if @items.update(ids, counts)
+        flash[:success] = t('.success')
+        format.html { redirect_to shop_path(@shop) }
+      else
+        format.html { render :stock, :status => :unprocessable_entity }
+      end
+    end
+  end
+
   # POST /items or /items.json
   def create
     @shop = Shop.find(params[:id])

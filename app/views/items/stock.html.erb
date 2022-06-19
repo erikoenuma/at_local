@@ -1,0 +1,49 @@
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-11 mx-auto">
+          <div class="my-5 align-items-center">
+            <div class="col-3"><h1><%= t('.title') %></h1></div>
+          </div>
+
+          <%= form_with(model: @items, url: update_stock_items_path(@shop), method: 'put', local: true) do |form| %>
+
+            <table class="table">
+              <thead class="table-light">
+                <tr>
+                  <th class="col-md-6"><%= Item.human_attribute_name :name %></th>
+                  <th class="col-md-2"><%= Item.human_attribute_name :counts %></th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @items.each do |item| %>
+                  <tr>
+                      <td class="align-items-center"><%= item.name %></td>
+                      <td>
+                        <%# パラメータをハッシュ化する %>
+                        <%# "1" => {"counts"=>"100"} %>
+                        <%= form.number_field "#{item.id}[counts]", class:"form-control", id:"stock#{item.id}", value: item.counts %>
+                      </td>
+                      <td>
+                          <div class="row justify-content-between">
+                              <button type="button" class="btn btn-outline-default col-md-3 ms-3" onclick="add(<%= item.id %>, 1)">+1</button>
+                              <button type="button" class="btn btn-outline-default col-md-3" onclick="add(<%= item.id %>, 10)">+10</button>
+                              <button type="button" class="btn btn-outline-default col-md-3" onclick="add(<%= item.id %>, 100)">+100</button>
+                          </div>
+                      </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+            <div class="row justify-content-center">
+              <%= form.submit "更新する",class: "btn btn-default col-md-2 my-5" %>
+            </div>
+
+          <% end %>
+        </div>
+    </div>
+</div>
+
+<%= javascript_pack_tag 'item/application' %>

@@ -17,15 +17,15 @@
         <div class="col-md-10 col-lg-8 col-xl-11 mx-auto">
 
             <%# 店舗詳細 %>
-            <div class="row align-items-center">
-              <h1 class="col-md-5">店舗詳細
+            <div class="d-flex align-items-center">
+              <h1 class="me-5">店舗詳細
                 <% if @shop.private %>
                   <span class="badge rounded-pill btn-default">非公開</span>
                 <% else %>
                   <span class="badge rounded-pill bg-success-default">公開中</span>
                 <% end %>
               </h1>
-              <%= link_to t('helpers.links.edit'), edit_shop_path(@shop), class:"btn btn-default col-md-1 h-50" %>
+              <%= link_to t('helpers.links.edit'), edit_shop_path(@shop), class:"btn btn-default" %>
             </div>
             
             <div class="container my-5">
@@ -74,11 +74,14 @@
             </div>
               
             <%# 商品一覧 %>
-            <div class="row mt-4 align-items-center">
-              <div class="col-3"><h1>商品一覧</h1></div>
-              <div class="col-2">
-                <%= link_to "在庫編集", stock_items_path(@shop), class: "btn btn-default"%>
+            <div class="d-flex mt-4 align-items-center">
+              <div class="me-5"><h1>商品一覧</h1></div>
+              <div class="mx-2">
+                <%= link_to "商品追加", new_item_path(@shop), class: "btn btn-default"%>
               </div>
+              <div class="mx-2">
+                <%= link_to "在庫編集", stock_items_path(@shop), class: "btn btn-default"%>
+              </div>            
             </div>
 
             <%= render '/items/index', items: @items, shop: @shop %>

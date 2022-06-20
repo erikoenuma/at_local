@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  skip_before_action :login_required, only: [:show]
   before_action :set_item, only: %i[ show edit update destroy ]
 
   # GET /items/1 or /items/1.json

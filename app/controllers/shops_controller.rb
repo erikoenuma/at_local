@@ -1,4 +1,5 @@
 class ShopsController < ApplicationController
+  skip_before_action :login_required, only: [:top, :index]
   before_action :set_shop, except: [:index]
 
   def index

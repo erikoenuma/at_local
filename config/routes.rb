@@ -4,23 +4,28 @@ Rails.application.routes.draw do
   resources :shops do
     member do
       resources :items, param: :item_id do
-        
+
         collection do
           get :stock
           put :update_stock
         end
         member do 
-          resources :carts do
-            collection do
-              post :add
-            end
-          end
+          post '/carts/add', to: 'carts#add'
         end
 
       end
       get :top
     end
   end
+
+  resources :carts, only: [:index, :update, :destroy] do
+    member do
+      get '/orders/new', to: 'orders#new'
+      delete '/destroy_item/:item_id', to: 'carts#destroy_item', as: :destroy_item
+    end
+  end
+
+  resources :orders, except:[:new]
   
   resources :users, except: [:index] do
     collection do

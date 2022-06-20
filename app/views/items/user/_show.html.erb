@@ -12,7 +12,7 @@
             <p class="fw-bold mt-5"><%= item.price %>円</p>
         </div>
 
-        <%= form_with(model: item, url: add_carts_path(shop, item),method: :post, local: true) do |form| %>
+        <%= form_with(model: item, url: carts_add_item_path(shop, item),method: :post, local: true) do |form| %>
             <div class="d-flex justify-content-end align-items-center">
                 <input type="number" class="form-control w-25 me-3" name="counts" max=<%= item.counts %> min= "1" value="1">個
             </div>

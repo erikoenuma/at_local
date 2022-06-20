@@ -86,6 +86,8 @@ ja:
     destroy:
       success: '商品を削除しました'
   carts:
+    index:
+      title: 'カート'
     add:
       success: '商品をカートに追加しました'
     

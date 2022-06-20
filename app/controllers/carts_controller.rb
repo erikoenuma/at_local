@@ -3,7 +3,7 @@ class CartsController < ApplicationController
 
   # GET /carts or /carts.json
   def index
-    @carts = Cart.all
+    @carts = current_user.carts
   end
 
   # GET /carts/1 or /carts/1.json
@@ -24,24 +24,27 @@ class CartsController < ApplicationController
     redirect_to item_path(@shop, @item)
   end
 
-  # PATCH/PUT /carts/1 or /carts/1.json
+  # 商品の数を変更
   def update
-    respond_to do |format|
-      if @cart.update(cart_params)
-        flash[:success] = t('.success')
-        format.html { redirect_to cart_url(@cart) }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
-    end
+    @cart = current_user.carts.find(params[:cart_id])
+    @item = @cart.items.find(params[:item_id])
+    # カートに入っている該当itemをすべて消す
+    @cart.items.delete(@item)
+    # 入れ直す
+    params[:counts].to_i.times { 
+      @cart.items << @item
+     }
   end
 
-  # DELETE /carts/1 or /carts/1.json
-  def destroy
-    @cart.destroy
+  # 商品削除
+  def destroy_item
+    @cart = current_user.carts.find(params[:id])
+    @item = @cart.items.find(params[:item_id])
 
-    respond_to do |format|
-      flash[:success] = t('.success')
+    @cart.items.delete(@item)
+    # カートが空になったらカートごと削除する
+    if @cart.items.empty?
+      @cart.destroy
       format.html { redirect_to carts_url }
     end
   end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_20_022658) do
+ActiveRecord::Schema.define(version: 2022_06_20_055352) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,20 @@ ActiveRecord::Schema.define(version: 2022_06_20_022658) do
     t.index ["shop_id"], name: "index_items_on_shop_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "shop_id", null: false
+    t.integer "payment_method", default: 0, null: false
+    t.integer "total_price", null: false
+    t.string "memo", null: false
+    t.integer "delivery_method", default: 0, null: false
+    t.datetime "deliver_date", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["shop_id"], name: "index_orders_on_shop_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "places", force: :cascade do |t|
     t.string "region", null: false
     t.string "prefecture", null: false
@@ -101,6 +115,8 @@ ActiveRecord::Schema.define(version: 2022_06_20_022658) do
   add_foreign_key "carts", "shops"
   add_foreign_key "carts", "users"
   add_foreign_key "items", "shops"
+  add_foreign_key "orders", "shops"
+  add_foreign_key "orders", "users"
   add_foreign_key "shops", "places"
   add_foreign_key "shops", "users"
 end

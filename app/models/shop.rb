@@ -1,7 +1,9 @@
 class Shop < ApplicationRecord
     belongs_to :user
-    has_many :items
+    has_many :items, dependent: :destroy
+    has_many :carts
     has_one_attached :image
+    has_many :orders
 
     validates :name, presence: true, length: { maximum: 30 }
     validates :address, length: { maximum: 255}

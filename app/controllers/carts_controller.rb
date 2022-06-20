@@ -1,13 +1,9 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[ show update destroy ]
+  before_action :set_cart, only: %i[ update destroy_item ]
 
   # GET /carts or /carts.json
   def index
     @carts = current_user.carts
-  end
-
-  # GET /carts/1 or /carts/1.json
-  def show
   end
 
   # カートに追加する
@@ -26,8 +22,6 @@ class CartsController < ApplicationController
 
   # 商品の数を変更
   def update
-    @cart = current_user.carts.find(params[:cart_id])
-    @item = @cart.items.find(params[:item_id])
     # カートに入っている該当itemをすべて消す
     @cart.items.delete(@item)
     # 入れ直す
@@ -38,8 +32,6 @@ class CartsController < ApplicationController
 
   # 商品削除
   def destroy_item
-    @cart = current_user.carts.find(params[:id])
-    @item = @cart.items.find(params[:item_id])
 
     @cart.items.delete(@item)
     # カートが空になったらカートごと削除する
@@ -53,10 +45,6 @@ class CartsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
       @cart = current_user.carts.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def cart_params
-      params.require(:cart).permit(:user_id, :shop_id)
+      @item = @cart.items.find(params[:item_id])
     end
 end

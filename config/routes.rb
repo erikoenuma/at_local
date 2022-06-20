@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :carts, only: [:index, :update, :destroy] do
+  resources :carts, only: [:index, :update] do
     member do
       get '/orders/new', to: 'orders#new'
       delete '/destroy_item/:item_id', to: 'carts#destroy_item', as: :destroy_item

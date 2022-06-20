@@ -13,7 +13,7 @@ ja:
         address: '住所'
         access: 'アクセス'
         introduction: '紹介文'
-        cancelable_days_before: 'キャンセル可能日'
+        cancelable_days_before: 'キャンセル規定'
         private: '公開設定'
         place_id: 'エリア'
       place:
@@ -85,6 +85,9 @@ ja:
       success: '商品情報を更新しました'
     destroy:
       success: '商品を削除しました'
+  carts:
+    add:
+      success: '商品をカートに追加しました'
     
   helpers:
     submit:
@@ -97,6 +100,7 @@ ja:
       edit: "編集"
       new: "新規作成"
       cancel: "キャンセル"
+      add_cart: "カートに入れる"
   common:
     new: 新規作成
     show: 詳細

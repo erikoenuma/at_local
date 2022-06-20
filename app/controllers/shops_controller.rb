@@ -15,7 +15,7 @@ class ShopsController < ApplicationController
 
   # 利用者側から見た店舗詳細画面
   def top
-    @items = @shop.items
+    @items = @shop.items.where(private: false)
   end
 
   # GET /shops/1/edit

@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :shop
+  belongs_to :cart
+  has_many :cart_items
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :price, presence: true, numericality: { in:1..999999 }

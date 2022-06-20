@@ -4,10 +4,19 @@ Rails.application.routes.draw do
   resources :shops do
     member do
       resources :items, param: :item_id do
+        
         collection do
           get :stock
           put :update_stock
         end
+        member do 
+          resources :carts do
+            collection do
+              post :add
+            end
+          end
+        end
+
       end
       get :top
     end

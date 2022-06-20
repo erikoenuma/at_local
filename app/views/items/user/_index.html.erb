@@ -1,0 +1,24 @@
+<%# 利用者側の商品一覧 %>
+
+<div class="album py-5">
+    <div class="container">
+
+        <div class="row">
+
+            <% items.each do |item| %>
+            <div class="col-md-4 card-group">
+                <a href="/shops/<%= shop.id %>/items/<%= item.id %>" class="card mb-4 box-shadow">
+                    <img class="card-img-top" src=<%= rails_blob_path(item.image) if item.image.present? %> alt="Card image cap">
+                    <div class="card-body align-items-center">
+                        <h5 class="card-text"><%= item.name %></h5>
+                        <div class="text-end">
+                            <small class="text-default fw-bold"><%= item.price %>円</small><br />
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% end %>
+
+        </div>
+    </div>
+</div>

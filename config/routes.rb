@@ -31,6 +31,9 @@ Rails.application.routes.draw do
       get :completed
       get :reorder
     end
+    collection do
+      get :reset_conditions
+    end
   end
   
   resources :users, except: [:index] do

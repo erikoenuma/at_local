@@ -1,6 +1,7 @@
 class ShopsController < ApplicationController
   skip_before_action :login_required, only: [:top, :index]
   before_action :set_shop, except: [:index]
+  before_action :shop_account_required, except: [:index, :top]
 
   def index
     @q = Shop.ransack(params[:q])

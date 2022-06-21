@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   before_action :set_cart, only: %i[ update destroy_item ]
+  before_action :user_account_required
 
   # GET /carts or /carts.json
   def index

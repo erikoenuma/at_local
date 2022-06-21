@@ -1,16 +1,13 @@
 <section class="vh-100">
   <div class="container py-5 h-100">
     <div class="row justify-content-center align-items-center">
-      <h1 class="col-xl-9 my-4"><%= t('.title') %></h1>
-      <div class="col-xl-9">
 
         <% if shop_user?(current_user) %>
-
+          <%= render '/orders/shop/index', orders: @shop_orders %>
         <% else %>
-          <%= render '/orders/user/index', orders: @orders %>
+          <%= render '/orders/user/index', orders: @user_orders %>
         <% end %>
-      </div>
-      
+
     </div>
   </div>
 </section>

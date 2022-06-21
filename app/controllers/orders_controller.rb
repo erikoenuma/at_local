@@ -1,9 +1,22 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy ]
+  before_action :user_account_required, except: [:index, :show, :update, :destroy]
 
   # GET /orders or /orders.json
   def index
-    @orders = Order.all
+    # 日付け順（降順）にする
+    @user_orders = current_user.orders.sort do |a,b|
+      b[:created_at] <=> a[:created_at]
+    end
+
+    @q = Order.ransack(params[:q])
+    if params[:q].nil?
+      @shop_orders = current_user.shop.orders.sort do |a,b|
+        b[:created_at] <=> a[:created_at]
+      end
+    else
+      @shop_orders = @q.result
+    end
   end
 
   # GET /orders/1 or /orders/1.json
@@ -15,10 +28,6 @@ class OrdersController < ApplicationController
     @order = current_user.orders.new
     @cart = current_user.carts.find(params[:id])
     @items = @cart.items
-  end
-
-  # GET /orders/1/edit
-  def edit
   end
 
   def completed
@@ -56,6 +65,12 @@ class OrdersController < ApplicationController
     @cart = current_user.carts.find_or_create_by(shop_id: @order.shop.id)
     @cart.items << @order.items
     redirect_to carts_path
+  end
+
+  # 検索条件リセット
+  def reset_conditions
+    @q = Order.ransack(params[:q])
+    redirect_to orders_path
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json

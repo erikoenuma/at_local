@@ -22,23 +22,23 @@
 
                 <div class="col-md-8">
                   <h3><%= cart.shop.name %></h3>
-                  <%# 購入数を変更できるようにする %>
-                  <%= form_with(model: cart, url: cart_path(cart), local: true) do |form| %>
-                    <ul class="ms-4">
 
-                      <% unique_items(cart).each do |item| %>
-                        <div class="ms-2 me-5 mt-3 d-flex justify-content-between align-items-center">
-                          <p class="mb-0"><%= item.name %></p>
+                  <% cart.unique_items.each do |item| %>
+
+                    <%# 購入数を変更できるようにする %>
+                    <%= form_with(model: cart, url: cart_path(cart), local: true) do |form| %>
+                      <div class="ms-2 me-5 mt-3 d-flex justify-content-between align-items-center">
+                        <p class="mb-0"><%= item.name %></p>
+
                           <div class="d-flex align-items-center col-md-5">
-                            <input type="hidden", name="cart_id", value=<%= cart.id %>>
-                            <input type="hidden", name="item_id", value=<%= cart.id %>>
-                            <input type="number", class="form-control me-2", name="counts", value="<%= item_counts(cart, item) %>", max=<%= item.counts %>, min="1">
-                            <span>個</span>                    
+                              <input type="hidden", name="item_id", value=<%= item.id %>>
+                              <input type="number", class="form-control me-2", name="counts", value="<%= item_counts(cart, item) %>", max=<%= item.counts %>, min="1">
+                              <span>個</span>
                             <%= link_to t('helpers.links.destroy'), destroy_item_cart_path(cart, item), method: :delete, data: { confirm: "#{item.name}をカートから削除してもよろしいですか？" }, class:"btn btn-outline-secondary col-md-5 ms-2" %>
                           </div>
-                        </div>
-                      <% end %>
-                    </ul>
+
+                      </div>
+                    <% end %>
                   <% end %>
 
                   <div class="text-end me-5 mt-5">

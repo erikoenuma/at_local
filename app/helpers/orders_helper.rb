@@ -14,4 +14,5 @@ module OrdersHelper
     def calculate_subtotal_price(item, cart)
         cart.items.where(id: item.id).map { |item| item.price }.sum
     end
+
 end

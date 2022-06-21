@@ -12,7 +12,7 @@
             <p><%= Order.human_attribute_name :name %>: <%= @order.name %></p>
             <p><%= Order.human_attribute_name :payment_method %>: <%= @order.payment_method %></p>
             <p><%= Order.human_attribute_name :delivery_method %>: <%= @order.delivery_method %></p>
-            <p><%= Order.human_attribute_name :deliver_date %>: <%= @order.deliver_date %></p>
+            <p><%= Order.human_attribute_name :deliver_date %>: <%= datetime_string(@order.deliver_date) %></p>
         </div>
 
         <div class="my-5">

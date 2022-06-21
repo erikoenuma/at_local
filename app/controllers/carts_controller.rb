@@ -37,8 +37,8 @@ class CartsController < ApplicationController
     # カートが空になったらカートごと削除する
     if @cart.items.empty?
       @cart.destroy
-      format.html { redirect_to carts_url }
     end
+    redirect_to carts_url
   end
 
   private

@@ -49,6 +49,15 @@ class OrdersController < ApplicationController
     end
   end
 
+  # 再注文
+  # カートを作成する
+  def reorder
+    @order = current_user.orders.find(params[:id])
+    @cart = current_user.carts.find_or_create_by(shop_id: @order.shop.id)
+    @cart.items << @order.items
+    redirect_to carts_path
+  end
+
   # PATCH/PUT /orders/1 or /orders/1.json
   def update
     respond_to do |format|

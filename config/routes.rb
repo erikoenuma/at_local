@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :orders, except:[:new, :create] do
     member do
       get :completed
+      get :reorder
     end
   end
   

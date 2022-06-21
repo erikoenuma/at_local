@@ -5,8 +5,4 @@ module CartsHelper
         return cart.items.where(id: item.id).count
     end
 
-    # cart.itemsの配列から重複を削除
-    def unique_items(cart)
-        return cart.items.uniq
-    end
 end

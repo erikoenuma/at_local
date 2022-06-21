@@ -1,5 +1,48 @@
-<h1>New Order</h1>
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center">
+      <h1 class="col-xl-9 my-4"><%= t('.title') %></h1>
+      <div class="col-xl-9">
 
-<%= render 'form', order: @order %>
+        <div class="card-form shadow-2-strong card-registration mb-5">
+          <div class="card-body p-4 p-md-5">
 
-<%= link_to 'Back', orders_path %>
+          <div class="my-4">
+            <h4>店舗名: <%= @cart.shop.name %></h4>
+          </div>
+
+            <table class="table table-bordered">
+                <thead class="thead-order">
+                    <tr>
+                        <th><%= Item.human_attribute_name :name %></th>
+                        <th><%= Item.human_attribute_name :price %></th>
+                        <th>数量</th>
+                        <th>小計</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% @cart.unique_items.each do |item| %>
+                        <tr>
+                            <td><%= item.name %></td>
+                            <td><%= item.price %>円</td>
+                            <td><%= total_amount(item, @cart) %></td>
+                            <td><%= calculate_subtotal_price(item, @cart) %>円</td>
+                        </tr>
+                    <% end %>
+                </tbody>
+
+            </table>
+
+            <div class="my-5 me-5 text-end">
+                <h5 class="fw-bold text-default">合計金額: <%= calculate_total_price(@items)%>円</h5>
+            </div>
+
+            <%= render 'form', order: @order, cart: @cart%>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

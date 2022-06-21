@@ -26,6 +26,20 @@ ja:
         description: '説明'
         private: '公開設定'
         counts: '在庫'
+      order:
+        name: '受け取り名'
+        payment_method: '支払方法'
+        total_price: '合計金額'
+        memo: '備考'
+        delivery_method: '受け渡し方法'
+        deliver_date: '受け渡し日時'
+  enums:
+    order:
+      payment_method:
+        local: '現地払い'
+      delivery_method:
+        delivery: '配送'
+        takeout: '店頭受け取り'
   users:
     new:
       title: 'アカウント作成'
@@ -90,6 +104,13 @@ ja:
       title: 'カート'
     add:
       success: '商品をカートに追加しました'
+  orders:
+    index:
+      title: '注文一覧'
+    new:
+      title: '購入画面'
+    completed:
+      title: 'ご購入ありがとうございました'
     
   helpers:
     submit:

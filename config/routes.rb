@@ -21,11 +21,16 @@ Rails.application.routes.draw do
   resources :carts, only: [:index, :update] do
     member do
       get '/orders/new', to: 'orders#new'
+      post '/orders', to: 'orders#create'
       delete '/destroy_item/:item_id', to: 'carts#destroy_item', as: :destroy_item
     end
   end
 
-  resources :orders, except:[:new]
+  resources :orders, except:[:new, :create] do
+    member do
+      get :completed
+    end
+  end
   
   resources :users, except: [:index] do
     collection do

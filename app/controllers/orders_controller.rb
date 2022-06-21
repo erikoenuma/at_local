@@ -12,24 +12,39 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @order = Order.new
+    @order = current_user.orders.new
+    @cart = current_user.carts.find(params[:id])
+    @items = @cart.items
   end
 
   # GET /orders/1/edit
   def edit
   end
 
+  def completed
+    @order = Order.find(params[:id])
+  end
+
   # POST /orders or /orders.json
   def create
-    @order = Order.new(order_params)
+    @cart = current_user.carts.find(params[:id])
+    @order = current_user.orders.new(order_params)
+    @items = @cart.items
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to order_url(@order), notice: "Order was successfully created." }
-        format.json { render :show, status: :created, location: @order }
+        @cart.items.each do |item|
+          # 在庫を減らす
+          @cart.shop.items.find(item.id).increment!(:counts, -1)
+          # cartのitemsをorderに移動させる
+          @order.items << item
+        end
+        # cartを削除
+        @cart.destroy
+
+        format.html { redirect_to completed_order_path(@order) }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,6 +80,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:user_id, :shop_id, :payment_method, :total_price, :memo, :delivery_method, :deliver_date)
+      params.require(:order).permit(:user_id, :shop_id, :name, :payment_method, :total_price, :memo, :delivery_method, :deliver_date)
     end
 end

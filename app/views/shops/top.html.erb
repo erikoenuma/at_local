@@ -1,9 +1,9 @@
 <%# 利用者側の店舗トップ画面 %>
 
 <section class="jumbotron text-center" style="background-image:url(<%= rails_blob_path(@shop.image) if @shop.image.present? %>);">
-  <div class="container">
-    <h1 class="jumbotron-heading"><%= @shop.name %></h1>
-    <span class="lead text-muted">
+  <div class="container dark-image p-5">
+    <h1 class="jumbotron-heading text-white mb-5"><%= @shop.name %></h1>
+    <span class="lead text-white">
         <%= @shop.access %><br />
         <%= @shop.address %>
     </span>

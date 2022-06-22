@@ -1,4 +1,6 @@
-<section class="jumbotron text-center">
+<%# 利用者側の店舗トップ画面 %>
+
+<section class="jumbotron text-center" style="background-image:url(<%= rails_blob_path(@shop.image) if @shop.image.present? %>);">
   <div class="container">
     <h1 class="jumbotron-heading"><%= @shop.name %></h1>
     <span class="lead text-muted">
@@ -8,7 +10,7 @@
   </div>
 </section>
 
-<div class="container px-4 px-lg-5">
+<div class="container px-4 px-lg-5 py-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-11 mx-auto">
 
@@ -18,12 +20,12 @@
             </div>
               
             <%# 商品一覧 %>
-            <div class="row mt-4 align-items-center">
-              <div class="col-4"><h3>商品一覧</h3></div>
-              <div class="col-6">キャンセル：<%= @shop.cancelable_days_before %>日前まで可能</div>
+            <div class="d-flex mt-4 align-items-center">
+              <div class="me-5"><h3>商品一覧</h3></div>
+              <div class="mx-2"><%= Shop.human_attribute_name :cancelable_days_before %>: <%= cancel_string(@shop.cancelable_days_before) %></div>
             </div>
 
-            <%= render '/items/index', items: @items %>
+            <%= render '/items/user/index', items: @items, shop: @shop %>
             
         </div>
     </div>

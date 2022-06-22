@@ -1,0 +1,45 @@
+<%= form_with(model: order, url: orders_cart_path(cart), local: true) do |form| %>
+  <%= render 'layouts/errors', object: order %>
+
+  <%= form.hidden_field :total_price, value: calculate_total_price(cart.items) %>
+  <%= form.hidden_field :shop_id, value: cart.shop.id %>
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <%= form.label :name, class:"mb-3" %>
+      <%= form.text_field :name, class:"form-control", autofocus: true, autocomplete: "name", required: true, maxlength: "30" %>
+    </div>
+
+    <div class="col-md-6">
+      <p class="mb-3"><%= form.label :payment_method %></p>
+      <%= form.select :payment_method, Order.payment_methods_i18n.invert, {}, class:"form-select mb-3" %>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6 delivery_method">
+      <p class="mb-3"><%= form.label :delivery_method %></p>
+      <%= form.select :delivery_method, Order.delivery_methods_i18n.invert, {}, class:"form-select mb-3" %>
+    </div>
+
+    <div class="col-md-6">
+      <%= form.label :deliver_date, class:"mb-3" %>
+      <%= form.datetime_field :deliver_date, class:"form-control", autofocus: true, autocomplete: "deliver_date", required: true %>
+    </div>
+
+  </div>
+
+  <div class="col-md-12">
+    <%= form.label :memo, class:"mb-3" %>
+    <%= form.text_area :memo, class:"form-control", autofocus: true, autocomplete: "memo", rows: "5", maxlength: "255"%>
+  </div>
+
+  <div class="row justify-content-center my-4">
+    <%= link_to t('helpers.links.back'), carts_path, class: "btn btn-light text-black col-md-2 mx-2"%>
+    <%= form.submit "購入する", class: "btn btn-default col-md-2 mx-2" %>
+  </div>
+
+<% end %>

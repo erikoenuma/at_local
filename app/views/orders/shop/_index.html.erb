@@ -1,0 +1,68 @@
+<h1 class="col-xl-9 my-4">受注一覧</h1>
+    <div class="col-xl-9">
+
+    <div class="shop-intro mb-5">
+        <h5 class="fw-bold">条件検索</h5>
+        <%# ransack %>
+        <%= search_form_for @q, url: orders_path do |f|%>
+            <div class="d-flex justify-content-between align-items-end my-3">
+                <div>
+                    <%= f.label "受注日", class:"form-label" %>
+                    <div class="d-flex align-items-center">
+                        <%= f.date_field :created_at_gteq, class:"form-control-sm form-control" %>～
+                        <%= f.date_field :created_at_lteq, class:"form-control-sm form-control" %>
+                    </div>
+                    <%= f.label :deliver_date, class:"form-label mt-2" %>
+                    <div class="d-flex align-items-center">
+                        <%= f.date_field :deliver_date_gteq, class:"form-control-sm form-control" %>～
+                        <%= f.date_field :deliver_date_lteq, class:"form-control-sm form-control" %>
+                    </div>
+                </div>
+
+                <div>
+                    <%= f.label :delivery_method, class:"form-label" %>
+                    <%# enumでransackを使う時はintegerを送信しなければならない  %>
+                    <%# mapで { takeout: 0, delivery: 1 }の形に変換している %>
+                    <%= f.select :delivery_method_eq_any, Order.delivery_methods_i18n.invert.map{|key, value| [key, Order.delivery_methods[value]]}, { include_blank: true }, class:"form-select-sm form-select" %>
+                    <%= f.label "発注者", class:"form-label mt-2" %>
+                    <%= f.search_field :name_cont, class:"form-control-sm form-control" %>
+                </div>
+
+                <div class="text-end mt-5">
+                    <%= link_to "クリア", reset_conditions_orders_path, class: "btn btn-outline-default" %>
+                    <%= f.submit "検索", class: "btn btn-outline-default" %>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
+    <% if orders.length == 0 %>
+        <p>受注履歴はありません</p>
+    <% else %>
+
+        <table class="table table-bordered table-hover mb-5">
+
+            <thead class="thead-order">
+                <tr>
+                    <th>発注者</th>
+                    <th>受注日</th>
+                    <th><%= Order.human_attribute_name :deliver_date %></th>
+                    <th><%= Order.human_attribute_name :delivery_method %></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% orders.each do |order| %>
+                    <tr style="cursor: hand; cursor:pointer;", onclick="window.location = './orders/<%= order.id %>'">
+                        <td><%= order.name %></td>
+                        <td><%= datetime_string(order.created_at) %></td>
+                        <td><%= datetime_string(order.deliver_date) %></td>
+                        <td><%= order.delivery_method_i18n %></td>
+                    </tr>
+                <% end %>
+            </tbody>
+
+        </table>
+    <% end %>
+
+</div>

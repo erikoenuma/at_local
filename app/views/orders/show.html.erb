@@ -1,0 +1,70 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center">
+      <h1 class="col-xl-9 my-4 text-center"><%= t('.title') %></h1>
+      <div class="col-xl-9">
+
+        <div class="my-5">
+            <h3>店舗名: <%= @order.shop.name %></h3>
+        </div>
+
+        <table class="table table-bordered">
+            <thead class="thead-order">
+                <tr>
+                    <th><%= Item.human_attribute_name :name %></th>
+                    <th><%= Item.human_attribute_name :price %></th>
+                    <th>数量</th>
+                    <th>小計</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @order.unique_items.each do |item| %>
+                    <tr>
+                        <td><%= item.name %></td>
+                        <td><%= item.price %>円</td>
+                        <td><%= total_amount(item, @order) %></td>
+                        <td><%= calculate_subtotal_price(item, @order) %>円</td>
+                    </tr>
+                <% end %>
+            </tbody>
+
+        </table>
+
+        <div class="my-5 me-5 text-end">
+            <h5 class="fw-bold text-default">合計金額: <%= calculate_total_price(@order.items)%>円</h5>
+        </div>
+
+        <div class="my-5 d-flex">
+          <div class="text-start">
+            <p><%= Order.human_attribute_name :name %>: <%= @order.name %></p>
+            <p><%= Order.human_attribute_name :payment_method %>: <%= @order.payment_method %></p>
+            <p><%= Order.human_attribute_name :delivery_method %>: <%= @order.delivery_method %></p>
+            <p><%= Order.human_attribute_name :deliver_date %>: <%= datetime_string(@order.deliver_date) %></p>          
+          </div>
+
+          <div class="ms-5">
+              <p><%= Order.human_attribute_name :memo %></p>
+              <p><%= @order.memo %></p>
+          </div>
+        </div>
+
+        <div class="my-5 d-flex">
+            <%= link_to t('helpers.links.back'), orders_path, class:"btn btn-outline-secondary me-5" %>
+            <%= link_to t('helpers.links.cancel'), class:"btn btn-outline-default" %>
+        </div>
+
+        <hr />
+
+        <div class="my-5 d-flex align-items-end">
+          <h3 class="me-5">メッセージ</h3>
+        </div>
+
+        <div class="my-5">
+          <%= render '/messages/show', messages: @messages, new_message: @message, order: @order %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center">
+
+        <% if shop_user?(current_user) %>
+          <%= render '/orders/shop/index', orders: @shop_orders %>
+        <% else %>
+          <%= render '/orders/user/index', orders: @user_orders %>
+        <% end %>
+
+    </div>
+  </div>
+</section>

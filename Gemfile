@@ -62,6 +62,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 日本語化
 gem 'rails-i18n'
+gem 'enum_help'
 
 # 検索機能
 gem 'ransack'

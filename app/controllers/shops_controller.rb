@@ -1,5 +1,7 @@
 class ShopsController < ApplicationController
+  skip_before_action :login_required, only: [:top, :index]
   before_action :set_shop, except: [:index]
+  before_action :shop_account_required, except: [:index, :top]
 
   def index
     @q = Shop.ransack(params[:q])
@@ -15,7 +17,7 @@ class ShopsController < ApplicationController
 
   # 利用者側から見た店舗詳細画面
   def top
-    @items = @shop.items
+    @items = @shop.items.where(private: false)
   end
 
   # GET /shops/1/edit

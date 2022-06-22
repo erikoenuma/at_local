@@ -1,0 +1,20 @@
+// Place all the styles related to the messages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.message {
+    background-color: #fbf0f1;
+    border-radius: 15px;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    text-align: start;
+}
+
+.message-date {
+    background-color: #f5f5f5;
+    border-radius: 15px;
+    padding: 0.2rem 0.5rem;
+    margin-bottom: 0.5rem;
+}

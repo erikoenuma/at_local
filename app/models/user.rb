@@ -5,5 +5,6 @@ class User < ApplicationRecord
     before_validation { email.downcase! }
     has_secure_password
     has_one :shop, dependent: :destroy
-
+    has_many :carts, dependent: :destroy
+    has_many :orders
 end

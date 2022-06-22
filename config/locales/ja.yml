@@ -13,7 +13,7 @@ ja:
         address: '住所'
         access: 'アクセス'
         introduction: '紹介文'
-        cancelable_days_before: 'キャンセル可能日'
+        cancelable_days_before: 'キャンセル規定'
         private: '公開設定'
         place_id: 'エリア'
       place:
@@ -26,6 +26,20 @@ ja:
         description: '説明'
         private: '公開設定'
         counts: '在庫'
+      order:
+        name: '受け取り名'
+        payment_method: '支払方法'
+        total_price: '合計金額'
+        memo: '備考'
+        delivery_method: '受け渡し方法'
+        deliver_date: '受け渡し日時'
+  enums:
+    order:
+      payment_method:
+        local: '現地払い'
+      delivery_method:
+        delivery: '配送'
+        takeout: '店頭受け取り'
   users:
     new:
       title: 'アカウント作成'
@@ -85,6 +99,20 @@ ja:
       success: '商品情報を更新しました'
     destroy:
       success: '商品を削除しました'
+  carts:
+    index:
+      title: 'カート'
+    add:
+      success: '商品をカートに追加しました'
+  orders:
+    index:
+      title: '注文一覧'
+    new:
+      title: '購入画面'
+    completed:
+      title: 'ご購入ありがとうございました'
+    show:
+      title: '注文詳細'
     
   helpers:
     submit:
@@ -97,6 +125,7 @@ ja:
       edit: "編集"
       new: "新規作成"
       cancel: "キャンセル"
+      add_cart: "カートに入れる"
   common:
     new: 新規作成
     show: 詳細

@@ -1,0 +1,30 @@
+<%# 店舗側の商品詳細画面 %>
+
+<div class="row" style="height:45%">
+    <div class="col-md-6">
+        <img class="item-image" src=<%= rails_blob_path(item.image) if item.image.present? %>>
+    </div>
+
+    <div class="col-md-6">
+        <label class="mb-3 fw-bold"><%= Item.human_attribute_name :name %></label>
+        <p><%= item.name %></p>
+        <label class="mb-3 fw-bold"><%= Item.human_attribute_name :price %></label>
+        <p><%= item.price %>円</p>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <label class="mb-3 fw-bold"><%= Item.human_attribute_name :description %></label>
+    <p><%= item.description %></p>
+</div>
+
+<div class="col-md-6 mb-4">
+    <label class="mb-3 fw-bold"><%= Item.human_attribute_name :private %></label>
+    <p><%= item.private ? "非公開" : "公開" %></p>
+</div>
+
+<div class="row justify-content-center my-5">
+    <%= link_to t('helpers.links.back'), shop_path(shop), class: "btn btn-light text-black col-md-2 mx-2"%>
+    <%= link_to t('helpers.links.edit'), edit_item_path(shop, item), class: "btn btn-default col-md-2 mx-2"%>
+    <%= link_to t('helpers.links.destroy'), item_path(shop, item), method: :delete, data: { confirm: t('common.confirm_destroy') }, class:"btn btn-outline-secondary col-md-2 mx-2"%>
+</div>

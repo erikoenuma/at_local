@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   belongs_to :shop
   has_many :order_items, dependent: :destroy
   has_many :items, through: :order_items
+  has_many :messages, dependent: :destroy
 
   enum payment_method: [ :local ]
   enum delivery_method: [ :takeout, :delivery ]

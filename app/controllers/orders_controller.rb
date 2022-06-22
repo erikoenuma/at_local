@@ -4,13 +4,13 @@ class OrdersController < ApplicationController
 
   # GET /orders or /orders.json
   def index
-    # 日付け順（降順）にする
+    # 日付順（降順）にする
     @user_orders = current_user.orders.sort do |a,b|
       b[:created_at] <=> a[:created_at]
     end
 
     @q = Order.ransack(params[:q])
-    if params[:q].nil?
+    if params[:q].nil? && shop_user?(current_user)
       @shop_orders = current_user.shop.orders.sort do |a,b|
         b[:created_at] <=> a[:created_at]
       end
@@ -21,6 +21,8 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
+    @messages = @order.messages
+    @message = Message.new
   end
 
   # GET /orders/new

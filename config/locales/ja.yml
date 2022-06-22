@@ -111,6 +111,8 @@ ja:
       title: '購入画面'
     completed:
       title: 'ご購入ありがとうございました'
+    show:
+      title: '注文詳細'
     
   helpers:
     submit:

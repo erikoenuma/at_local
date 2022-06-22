@@ -18,12 +18,12 @@ module SessionsHelper
 
     # 店舗アカウントかどうか
     def shop_user?(user)
-        current_user?(user) && user.shop != nil
+        logged_in? && current_user?(user) && user.shop != nil
     end
 
     # 利用者アカウントかどうか
     def customer_user?(user)
-        current_user?(user) && user.shop == nil
+        logged_in? && current_user?(user) && user.shop == nil
     end
 
 end

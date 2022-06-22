@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="col-md-8">
-                  <h3><%= cart.shop.name %></h3>
+                  <%= link_to cart.shop.name, top_shop_path(cart.shop), class:"h3" %>
 
                   <% cart.unique_items.each do |item| %>
 

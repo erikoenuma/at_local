@@ -40,29 +40,31 @@
         <p>受注履歴はありません</p>
     <% else %>
 
-        <table class="table table-bordered table-hover mb-5">
+        <div class="container table-background">
+            <table class="table table-hover">
 
-            <thead class="thead-order">
-                <tr>
-                    <th>発注者</th>
-                    <th>受注日</th>
-                    <th><%= Order.human_attribute_name :deliver_date %></th>
-                    <th><%= Order.human_attribute_name :delivery_method %></th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <% orders.each do |order| %>
-                    <tr style="cursor: hand; cursor:pointer;", onclick="window.location = './orders/<%= order.id %>'">
-                        <td><%= order.name %></td>
-                        <td><%= datetime_string(order.created_at) %></td>
-                        <td><%= datetime_string(order.deliver_date) %></td>
-                        <td><%= order.delivery_method_i18n %></td>
+                <thead class="thead-order">
+                    <tr>
+                        <th>発注者</th>
+                        <th>受注日</th>
+                        <th><%= Order.human_attribute_name :deliver_date %></th>
+                        <th><%= Order.human_attribute_name :delivery_method %></th>
                     </tr>
-                <% end %>
-            </tbody>
+                </thead>
 
-        </table>
+                <tbody>
+                    <% orders.each do |order| %>
+                        <tr style="cursor: hand; cursor:pointer;", onclick="window.location = './orders/<%= order.id %>'">
+                            <td><%= order.name %></td>
+                            <td><%= datetime_string(order.created_at) %></td>
+                            <td><%= datetime_string(order.deliver_date) %></td>
+                            <td><%= order.delivery_method_i18n %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+
+            </table>
+        </div>
     <% end %>
 
 </div>

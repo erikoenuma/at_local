@@ -35,10 +35,15 @@ font-weight: 300;
 max-width: 40rem;
 }
 
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+/* 画像を暗くするオーバーレイ */
+.dark-image {
+    content: '';
+    /* ↓暗いオーバーレイを半透明で配置 */
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
 .shop-intro {
-    background-color: #fbf0f1;
+    background-color: #fefefe;
     border-radius: 15px;
     padding: 1.5rem;
     margin-bottom: 5rem;

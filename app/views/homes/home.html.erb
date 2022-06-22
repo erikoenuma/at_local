@@ -1,0 +1,60 @@
+<%# ホーム画面 %>
+
+<section class="jumbotron text-center" style="background-image:url('<%= asset_path('sugamo.jpg') %>');">
+  <div class="container dark-image py-5">
+    <h1 class="jumbotron-heading text-white display-1">@local</h1>
+    <p class="lead text-white">地元の店とつながるアプリ</p>
+  </div>
+</section>
+
+<div class="container px-4 px-lg-5 py-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-11 mx-auto">
+
+            <%# 紹介文 %>
+            <div class="d-flex shop-intro text-center justify-content-center">
+                毎日忙しくて大きなスーパーばかり行っていませんか？<br>
+                もしかしたら近所の小さいお店の方がスーパーより種類も多いし、安いかも。<br>
+                @localの商品はネットで注文できるし近所であれば配送も可能。最低利用料金もありません。<br>
+                地元で買い物をして、地元の人と繋がれば、毎日がもっと楽しくなるはず。<br>
+                あなたも家の近所で新しい発見をしてみませんか？
+            </div>
+              
+            <div class="text-center">
+                <%= link_to "近所のお店を探す", prefecture_path, class:"btn btn-default" %>
+            </div> 
+
+            <hr>
+
+            <%# 商品一覧 %>
+            <h5 class="d-flex justify-content-center mt-5">
+                \ こんな商品が買えます！ /
+            </h5>
+
+            <div class="album py-5">
+                <div class="container">
+
+                    <div class="row">
+
+                        <% @items.each do |item| %>
+                        <div class="col-md-4 card-group">
+                            <img class="card-img-top" src=<%= rails_blob_path(item.image) if item.image.present? %> alt="Card image cap">
+                            <div class="card-body align-items-center">
+                                <h5 class="card-text"><%= item.name %></h5>
+                                <div class="text-end">
+                                    <small class="text-default fw-bold"><%= item.price %>円</small><br />
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <%= link_to "近所のお店を探す", prefecture_path, class:"btn btn-default" %>
+            </div>            
+        </div>
+    </div>
+</div>

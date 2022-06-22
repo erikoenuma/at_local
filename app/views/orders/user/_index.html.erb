@@ -1,4 +1,4 @@
-<h1 class="col-xl-9 my-4"><%= t('.title') %></h1>
+<h1 class="col-xl-9 my-4">注文履歴</h1>
     <div class="col-xl-9">
 
     <% if orders.length == 0 %>
@@ -19,8 +19,8 @@
 
                 <div class="col-md-8">
                     <div class="d-flex align-items-center">
-                    <h3 class="me-5"><%= order.shop.name %></h3>
-                    <p class="mb-0"><%= datetime_string(order.created_at) %></p>
+                        <%= link_to order.shop.name, top_shop_path(order.shop), class:"h3 me-3" %>
+                        <p class="mb-0"><%= datetime_string(order.created_at) %></p>
                     </div>
 
                     <% order.unique_items.each do |item| %>

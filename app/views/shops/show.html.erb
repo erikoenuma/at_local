@@ -1,6 +1,6 @@
 <section class="jumbotron text-center" style="background-image:url(<%= rails_blob_path(@shop.image) if @shop.image.present? %>);">
-  <div class="container">
-    <h1 class="jumbotron-heading mb-5"><%= @shop.name %></h1>
+  <div class="container dark-image p-5">
+    <h1 class="jumbotron-heading mb-5 text-white"><%= @shop.name %></h1>
 
     <%= form_with(model: @shop, url: shop_path(@shop), method: 'PUT', local: true) do |form| %>
       <%# file_fieldの名前を変更 %>

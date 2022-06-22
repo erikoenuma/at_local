@@ -1,4 +1,5 @@
 class PlacesController < ApplicationController
+    skip_before_action :login_required
     before_action :set_q
 
     def prefectures

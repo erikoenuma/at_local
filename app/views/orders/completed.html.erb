@@ -19,28 +19,30 @@
             <h3>注文詳細</h3>
         </div>
 
-        <table class="table table-bordered">
-            <thead class="thead-order">
-                <tr>
-                    <th><%= Item.human_attribute_name :name %></th>
-                    <th><%= Item.human_attribute_name :price %></th>
-                    <th>数量</th>
-                    <th>小計</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <% @order.unique_items.each do |item| %>
+        <div class="container table-background">
+            <table class="table table-bordered">
+                <thead class="thead-order">
                     <tr>
-                        <td><%= item.name %></td>
-                        <td><%= item.price %>円</td>
-                        <td><%= total_amount(item, @order) %></td>
-                        <td><%= calculate_subtotal_price(item, @order) %>円</td>
+                        <th><%= Item.human_attribute_name :name %></th>
+                        <th><%= Item.human_attribute_name :price %></th>
+                        <th>数量</th>
+                        <th>小計</th>
                     </tr>
-                <% end %>
-            </tbody>
+                </thead>
 
-        </table>
+                <tbody>
+                    <% @order.unique_items.each do |item| %>
+                        <tr>
+                            <td><%= item.name %></td>
+                            <td><%= item.price %>円</td>
+                            <td><%= total_amount(item, @order) %></td>
+                            <td><%= calculate_subtotal_price(item, @order) %>円</td>
+                        </tr>
+                    <% end %>
+                </tbody>
+
+            </table>
+        </div>
 
         <div class="my-5 me-5 text-end">
             <h5 class="fw-bold text-default">合計金額: <%= calculate_total_price(@order.items)%>円</h5>

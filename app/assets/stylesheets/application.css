@@ -39,10 +39,37 @@
     color: #fefefe;
 }
 
+.bg-default {
+    background-color: #fbf0f1;
+}
+
+.bg-white {
+    background-color: #fefefe;
+}
+
+.nav-link-default {
+    color: #fefefe;
+    text-align: center;
+    margin: 0 1rem;
+}
+
+.nav-link-default:hover {
+    background-color: #fefefe;
+    color: #F15B55;
+    border-radius: 15px;
+    padding: 0.5rem;
+    margin:  0 0.5rem;
+}
+
 .card-form{
     border-radius:15px;
     background-color:#fefefe;
     display:flex;
     justify-content:center;
-    box-shadow: 23px 17px 64px -14px rgba(90,87,87,0.75);
+}
+
+.table-background {
+    background-color: #fefefe;
+    border-radius: 15px;
+    padding: 2rem;
 }

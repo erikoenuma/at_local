@@ -7,12 +7,13 @@
 
           <%= form_with(model: @items, url: update_stock_items_path(@shop), method: 'put', local: true) do |form| %>
 
+          <div class="container table-background">
             <table class="table">
-              <thead class="table-light">
+              <thead class="thead-order">
                 <tr>
                   <th class="col-md-6"><%= Item.human_attribute_name :name %></th>
                   <th class="col-md-2"><%= Item.human_attribute_name :counts %></th>
-                  <th></th>
+                  <th class="col-md-4"></th>
                 </tr>
               </thead>
 
@@ -36,6 +37,8 @@
                 <% end %>
               </tbody>
             </table>
+          
+          </div>
 
             <div class="row justify-content-center">
               <%= form.submit "更新する",class: "btn btn-default col-md-2 my-5" %>

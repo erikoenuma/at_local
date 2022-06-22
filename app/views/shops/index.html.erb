@@ -6,7 +6,7 @@
               <div class="col-3"><%= link_to t('helpers.links.back'), :back, class:"btn btn-primary text-white btn-sm my-5" %></div>
             </div>
 
-            <div class="album py-5 bg-light">
+            <div class="album py-5 table-background">
                 <div class="container">
 
                     <div class="row">
@@ -14,7 +14,7 @@
                         <% @shops.each do |shop| %>
                         <div class="col-md-4">
                             <a href="/shops/<%= shop.id %>/top" class="card mb-4">
-                                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Card image cap">
+                                <img class="card-img-top" src=<%= rails_blob_path(shop.image) if shop.image.present? %> alt="Card image cap">
                                 <div class="card-body">
                                     <p class="card-text"><%= shop.name %></p>
                                 </div>

@@ -1,9 +1,9 @@
 class Item < ApplicationRecord
   belongs_to :shop
-  belongs_to :cart
-  belongs_to :order
   has_many :cart_items
   has_many :order_items
+  has_many :carts, through: :cart_items
+  has_many :orders, through: :order_items
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :price, presence: true, numericality: { in:1..999999 }

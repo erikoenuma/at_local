@@ -38,11 +38,13 @@
 
                         <% @items.each do |item| %>
                         <div class="col-md-4 card-group">
-                            <img class="card-img-top" src=<%= rails_blob_path(item.image) if item.image.present? %> alt="Card image cap">
-                            <div class="card-body align-items-center">
-                                <h5 class="card-text"><%= item.name %></h5>
-                                <div class="text-end">
-                                    <small class="text-default fw-bold"><%= item.price %>円</small><br />
+                            <div class="card mb-4">
+                                <img class="card-img-top" src=<%= rails_blob_path(item.image) if item.image.present? %> alt="Card image cap">
+                                <div class="card-body align-items-center">
+                                    <h5 class="card-text"><%= item.name %></h5>
+                                    <div class="text-end">
+                                        <small class="text-default fw-bold"><%= item.price %>円</small><br />
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,0 +1,2 @@
+$("#messages_area").html("<%= j(render 'messages/show', { messages: @messages, new_message: @new_message, order: @order }) %>")
+$("text_field").val('')

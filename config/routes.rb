@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  root 'homes#home'
 
   resources :shops do
     member do
@@ -54,5 +54,6 @@ Rails.application.routes.draw do
 
   get "/prefecture", to: 'places#prefectures'
   get "/areas", to: 'places#areas'
+  get "/home", to: 'homes#home'
 
 end

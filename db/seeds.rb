@@ -42,10 +42,10 @@ end
 
 [
     ["1", "shop", "1", "shopaddress", "shopaccess", "shopintrooooooooooooooooooo", 0, false],
-    ["1", "shop2", "2", "shopaddress2", "shopaccess2", "shopintrooooooooooooooooooo", 1, false],
-    ["1", "shop3", "3", "shopaddress3", "shopaccess3", "shopintrooooooooooooooooooo", 2, false],
-    ["1", "shop4", "4", "shopaddress4", "shopaccess4", "shopintrooooooooooooooooooo", 3, false],
-    ["1", "shop5", "5", "shopaddress5", "shopaccess5", "shopintrooooooooooooooooooo", 8, false]
+    ["2", "shop2", "2", "shopaddress2", "shopaccess2", "shopintrooooooooooooooooooo", 1, false],
+    ["3", "shop3", "3", "shopaddress3", "shopaccess3", "shopintrooooooooooooooooooo", 2, false],
+    ["4", "shop4", "4", "shopaddress4", "shopaccess4", "shopintrooooooooooooooooooo", 3, false],
+    ["5", "shop5", "5", "shopaddress5", "shopaccess5", "shopintrooooooooooooooooooo", 8, false]
 ].each do |user_id, name, place_id, address, access, introduction, cancelable_days_before, private|
     Shop.create({ 
         user_id: user_id,

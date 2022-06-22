@@ -11,6 +11,7 @@
             <h4>店舗名: <%= @cart.shop.name %></h4>
           </div>
 
+          <div class="container table-background">
             <table class="table table-bordered">
                 <thead class="thead-order">
                     <tr>
@@ -33,6 +34,7 @@
                 </tbody>
 
             </table>
+            </div>
 
             <div class="my-5 me-5 text-end">
                 <h5 class="fw-bold text-default">合計金額: <%= calculate_total_price(@items)%>円</h5>

@@ -41,7 +41,7 @@
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                       <div class="ms-2 me-auto">
                         <div class="fw-bold"><%= Shop.human_attribute_name :place_id %></div>
-                        <%= @place.region %> > <%= @place.prefecture %> > <%= @place.area %>
+                        <%= @place.nil? ? "未設定": @place.region %> > <%= @place.nil? ? "未設定": @place.prefecture %> > <%= @place.nil? ? "未設定": @place.area %>
                       </div>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">

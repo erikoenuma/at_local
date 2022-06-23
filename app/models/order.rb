@@ -7,7 +7,7 @@ class Order < ApplicationRecord
 
   enum payment_method: [ :local ]
   enum delivery_method: [ :takeout, :delivery ]
-  enum status: [ :not_paid, :not_sent, :sent, :delivered, :completed, :canceled]
+  enum status: [ :not_paid, :yet_sent, :sent, :delivered, :completed, :canceled]
 
   validates :payment_method, presence: true
   validates :total_price, presence: true, numericality: { in:1..999999 }

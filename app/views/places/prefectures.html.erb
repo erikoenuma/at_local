@@ -15,7 +15,7 @@
                         <%# ransack %>
                         <%= search_form_for @q, url: areas_path do |f|%>
                             <%= f.hidden_field :prefecture_eq, :value => prefecture.prefecture %>
-                            <%= f.submit "#{prefecture.prefecture}", class:"btn btn-outline-default" %>
+                            <%= f.submit "#{prefecture.prefecture}", class:"btn btn-outline-default me-3" %>
                         <% end %>
                     <% end %>
                 </div>

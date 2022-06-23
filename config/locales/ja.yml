@@ -43,7 +43,7 @@ ja:
         takeout: '店頭受け取り'
       status:
         not_paid: '支払い待ち'
-        not_sent: '未発送'
+        yet_sent: '未発送'
         sent: '発送済み'
         delivered: '受け渡し済み'
         completed: '取引完了'

@@ -9,11 +9,7 @@
   <div class="row">
     <div class="col-md-12">
       <%= form.label :place_id, class:"mb-2" %>
-      <select class="form-select mb-3", name="shop[place_id]">
-        <% Place.all.each do |place| %>
-          <option value= <%= place.id %>><%= place.region %> / <%= place.prefecture %> / <%= place.area %></option>
-        <% end %>
-      </select>
+      <%= form.select :place_id, Place.all.map{|p| ["#{p.region} / #{p.prefecture} / #{p.area}", p.id ]}, {}, class:"form-select mb-3" %>
     </div>
   </div>
 
@@ -35,28 +31,14 @@
   <div class="row">
     <div class="col-md-6">
       <%= form.label :cancelable_days_before, class:"mb-2" %>
-      <select class="form-select mb-3", name="shop[cancelable_days_before]">
-        <option value="8">キャンセル不可</option>
-        <option value= "0">当日</option>
-        <% for i in 1..7 do %>
-          <option value= <%= i %>><%= i %>日前まで</option>
-        <% end %>
-      </select>
+      <%= form.select :cancelable_days_before, Shop.cancelable_days_befores_i18n.invert, {}, class:"form-select mb-3"%>
     </div>
 
     <div class="col-md-6 mb-4">
       <%= form.label :private, class:"mb-2 pb-1" %>  
-      <div class="form-outline row mx-0">
-        <div class="form-check col-md-4">  
-          <input class="form-check-input" type="radio" name="shop[private]" id="false"
-            value="false" checked/>
-          <label class="form-check-label" for="false">公開</label>
-        </div>
-        <div class="form-check col-md-4">
-            <input class="form-check-input" type="radio" name="shop[private]" id="true"
-            value="true" />
-            <label class="form-check-label" for="true">非公開</label>
-        </div>       
+      <div class="form-outline d-flex align-items-center mx-0">
+        <%= form.radio_button :private, false, class:"form-check me-2" %>公開
+        <%= form.radio_button :private, true, class:"form-check ms-3 me-2" %>非公開   
       </div>
     </div>
 

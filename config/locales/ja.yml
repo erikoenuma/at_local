@@ -49,6 +49,17 @@ ja:
         delivered: '受け渡し済み'
         completed: '取引完了'
         canceled: 'キャンセル済み'
+    shop:
+      cancelable_days_before:
+        today: '当日まで'
+        one: '1日前まで'
+        two: '2日前まで'
+        three: '3日前まで'
+        four: '4日前まで'
+        five: '5日前まで'
+        six: '6日前まで'
+        seven: '7日前まで'
+        not_allowed: 'キャンセル不可'
   users:
     new:
       title: 'アカウント作成'

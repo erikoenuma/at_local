@@ -5,6 +5,7 @@ lock "~> 3.17.0"
 set :application, "at_local"
 set :repo_url, "https://github.com/erikoenuma/at_local.git"
 set :linked_files, %w{config/secrets.yml}
+append :linked_files, 'config/secrets.yml'
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets public/uploads} 
 # masterkeyを本番環境で読み取る
 set :linked_files, fetch(:linked_files, []).push("config/master.key")

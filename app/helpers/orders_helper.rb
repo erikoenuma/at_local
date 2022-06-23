@@ -19,7 +19,7 @@ module OrdersHelper
     def cancelable?(order)
         case order.shop.cancelable_days_before   
         # キャンセル不可
-        when 8 then
+        when 'not_allowed' then
             return false
         else
             order.status != ('canceled' || 'completed') &&

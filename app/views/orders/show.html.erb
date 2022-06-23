@@ -40,9 +40,27 @@
         <div class="my-5 d-flex">
           <div class="text-start">
             <p><%= Order.human_attribute_name :name %>: <%= @order.name %></p>
-            <p><%= Order.human_attribute_name :payment_method %>: <%= @order.payment_method %></p>
-            <p><%= Order.human_attribute_name :delivery_method %>: <%= @order.delivery_method %></p>
+            <p><%= Order.human_attribute_name :payment_method %>: <%= @order.payment_method_i18n %></p>
+            <p><%= Order.human_attribute_name :delivery_method %>: <%= @order.delivery_method_i18n %></p>
             <p><%= Order.human_attribute_name :deliver_date %>: <%= datetime_string(@order.deliver_date) %></p>          
+
+            <% if shop_user?(current_user) %>
+              <%= form_with(model: @order, url: order_path, local: true ) do |form|%>
+                <div class="d-flex align-items-center">
+
+                  <% if @order.status == ('canceled' || 'completed') %>
+                    <div><%= Order.human_attribute_name :status %>: <%= @order.status_i18n %></div>
+                  <% else %>
+                    <div><%= Order.human_attribute_name :status %>: </div>
+                    <div><%= form.select :status, Order.statuses_i18n.invert.take(4), {}, class:"form-select mx-3 form-select-sm", value: @order.status %></div>
+                    <div><%= form.submit "更新する", class:"btn btn-default btn-sm ms-4" %></div>
+                  <% end %>
+
+                </div>
+              <% end %>
+            <% else %>
+              <p><%= Order.human_attribute_name :status %>: <%= @order.status_i18n %></p>
+            <% end %>
           </div>
 
           <div class="ms-5">
@@ -53,7 +71,9 @@
 
         <div class="my-5 d-flex">
             <%= link_to t('helpers.links.back'), orders_path, class:"btn btn-outline-secondary me-5" %>
-            <%= link_to t('helpers.links.cancel'), class:"btn btn-outline-default" %>
+            <% if cancelable?(@order) %>
+              <%= link_to t('helpers.links.cancel'), cancel_order_path(@order),method: :put, data: { confirm:'本当にキャンセルしてもよろしいですか？' }, class:"btn btn-outline-default" %>
+            <% end %>
         </div>
 
         <hr />

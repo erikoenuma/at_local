@@ -11,7 +11,6 @@ class MessagesController < ApplicationController
                 format.js { render :show }
             end
         end
-
     end
 
     private

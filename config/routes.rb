@@ -31,6 +31,7 @@ Rails.application.routes.draw do
       get :completed
       get :reorder
       resources :messages, only: [:create]
+      put :cancel
     end
     collection do
       get :reset_conditions

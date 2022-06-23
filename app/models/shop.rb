@@ -1,9 +1,9 @@
 class Shop < ApplicationRecord
     belongs_to :user
     has_many :items, dependent: :destroy
-    has_many :carts
+    has_many :carts, dependent: :destroy
     has_one_attached :image
-    has_many :orders
+    has_many :orders, dependent: :destroy
 
     enum cancelable_days_before: [ :today, :one, :two, :three, :four, :five, :six, :seven, :not_allowed ]
 

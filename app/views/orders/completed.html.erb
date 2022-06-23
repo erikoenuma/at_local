@@ -10,9 +10,12 @@
 
         <div class="my-5">
             <p><%= Order.human_attribute_name :name %>: <%= @order.name %></p>
-            <p><%= Order.human_attribute_name :payment_method %>: <%= @order.payment_method %></p>
-            <p><%= Order.human_attribute_name :delivery_method %>: <%= @order.delivery_method %></p>
+            <p><%= Order.human_attribute_name :payment_method %>: <%= @order.payment_method_i18n %></p>
+            <p><%= Order.human_attribute_name :delivery_method %>: <%= @order.delivery_method_i18n %></p>
             <p><%= Order.human_attribute_name :deliver_date %>: <%= datetime_string(@order.deliver_date) %></p>
+            <% if @order.delivery_method == 'delivery' %>
+                <p>配送先住所: <%= @order.address %></p>
+            <% end %>
         </div>
 
         <div class="my-5">

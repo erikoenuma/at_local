@@ -33,6 +33,11 @@
   </div>
 
   <div class="col-md-12">
+    <%= form.label :address, class:"mb-3" %>
+    <%= form.text_field :address, class:"form-control", autofocus: true, autocomplete: "address", maxlength: "255" %>
+  </div>
+
+  <div class="col-md-12 mt-3">
     <%= form.label :memo, class:"mb-3" %>
     <%= form.text_area :memo, class:"form-control", autofocus: true, autocomplete: "memo", rows: "5", maxlength: "255"%>
   </div>

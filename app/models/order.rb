@@ -16,11 +16,19 @@ class Order < ApplicationRecord
   validates :deliver_date, presence: true
   validates :name, presence: true, length: { maximum: 30 }
   validates :status, presence: true
+  validates :address, length: { maximum: 255 }
   validate :deliver_date_check
+  validate :address_check
 
   def deliver_date_check
     errors.add(:deliver_date, "受取日は本日以降の日付けを設定してください") unless
     self.deliver_date > Time.now
+  end
+
+  def address_check
+    if self.delivery_method == 'delivery' && self.address.blank?
+      errors.add(:address, "配送先の住所を記入してください")
+    end
   end
 
   # order.itemsの配列から重複を削除

@@ -33,6 +33,7 @@ ja:
         memo: '備考'
         delivery_method: '受け渡し方法'
         deliver_date: '受け渡し日時'
+        status: 'ステータス'
   enums:
     order:
       payment_method:
@@ -40,6 +41,13 @@ ja:
       delivery_method:
         delivery: '配送'
         takeout: '店頭受け取り'
+      status:
+        not_paid: '支払い待ち'
+        not_sent: '未発送'
+        sent: '発送済み'
+        delivered: '受け渡し済み'
+        completed: '取引完了'
+        canceled: 'キャンセル済み'
   users:
     new:
       title: 'アカウント作成'
@@ -113,6 +121,10 @@ ja:
       title: 'ご購入ありがとうございました'
     show:
       title: '注文詳細'
+    update:
+      success: 'ステータスを更新しました'
+    cancel:
+      success: '注文をキャンセルしました'
     
   helpers:
     submit:

@@ -7,6 +7,7 @@ class Order < ApplicationRecord
 
   enum payment_method: [ :local ]
   enum delivery_method: [ :takeout, :delivery ]
+  enum status: [ :not_paid, :not_sent, :sent, :delivered, :completed, :canceled]
 
   validates :payment_method, presence: true
   validates :total_price, presence: true, numericality: { in:1..999999 }
@@ -14,6 +15,7 @@ class Order < ApplicationRecord
   validates :delivery_method, presence: true
   validates :deliver_date, presence: true
   validates :name, presence: true, length: { maximum: 30 }
+  validates :status, presence: true
   validate :deliver_date_check
 
   def deliver_date_check

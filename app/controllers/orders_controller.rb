@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy ]
-  before_action :user_account_required, except: [:index, :show, :update, :destroy]
+  before_action :set_order, only: %i[ show edit update destroy cancel ]
+  before_action :user_account_required, except: [:index, :show, :update, :cancel, :reset_conditions]
 
   # GET /orders or /orders.json
   def index
@@ -79,22 +79,22 @@ class OrdersController < ApplicationController
   def update
     respond_to do |format|
       if @order.update(order_params)
-        format.html { redirect_to order_url(@order), notice: "Order was successfully updated." }
-        format.json { render :show, status: :ok, location: @order }
+        flash[:success] = t('.success')
+        format.html { redirect_to order_url(@order) }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.html { render :show, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /orders/1 or /orders/1.json
-  def destroy
-    @order.destroy
-
+  def cancel
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
-      format.json { head :no_content }
+      if @order.update(status: :canceled)
+        flash[:success] = t('.success')
+        format.html { redirect_to order_url(@order) }
+      else
+        format.html { render :show, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -106,6 +106,6 @@ class OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:user_id, :shop_id, :name, :payment_method, :total_price, :memo, :delivery_method, :deliver_date)
+      params.require(:order).permit(:user_id, :shop_id, :name, :payment_method, :total_price, :memo, :delivery_method, :deliver_date, :status)
     end
 end

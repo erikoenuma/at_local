@@ -25,7 +25,7 @@ module OrdersHelper
             order.status != ('canceled' || 'completed') &&
             # 店舗側はいつでもキャンセルできる
             (shop_user?(current_user) ||
-            Date.today - order.shop.cancelable_days_before >= Time.current.to_date)
+            Date.today - Shop.cancelable_days_befores[order.shop.cancelable_days_before] >= Time.current.to_date)
         end
     end
 

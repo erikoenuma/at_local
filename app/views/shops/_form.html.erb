@@ -6,6 +6,17 @@
     <%= form.text_field :name, class:"form-control", autofocus: true, autocomplete: "name", placeholder:"ユーザー名", required: true, maxlength: "30" %>
   </div>
 
+  <div class="row">
+    <div class="col-md-12">
+      <%= form.label :place_id, class:"mb-2" %>
+      <select class="form-select mb-3", name="shop[place_id]">
+        <% Place.all.each do |place| %>
+          <option value= <%= place.id %>><%= place.region %> / <%= place.prefecture %> / <%= place.area %></option>
+        <% end %>
+      </select>
+    </div>
+  </div>
+
   <div class="field">
     <%= form.label :address, class:"mb-2" %>
     <%= form.text_field :address, class:"form-control", autofocus: true, autocomplete: "address", placeholder:"住所", required: true, maxlength: "255" %>
@@ -24,7 +35,7 @@
   <div class="row">
     <div class="col-md-6">
       <%= form.label :cancelable_days_before, class:"mb-2" %>
-      <select class="form-select mb-3", name="cancelable_days_before">
+      <select class="form-select mb-3", name="shop[cancelable_days_before]">
         <option value="8">キャンセル不可</option>
         <option value= "0">当日</option>
         <% for i in 1..7 do %>

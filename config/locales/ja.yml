@@ -34,6 +34,7 @@ ja:
         delivery_method: '受け渡し方法'
         deliver_date: '受け渡し日時'
         status: 'ステータス'
+        address: '配送先住所（配送の場合のみ記入してください）'
   enums:
     order:
       payment_method:

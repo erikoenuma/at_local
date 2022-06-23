@@ -66,6 +66,11 @@
           <div class="ms-5">
               <p><%= Order.human_attribute_name :memo %></p>
               <p><%= @order.memo %></p>
+
+              <% if @order.delivery_method == 'delivery' %>
+                <p><%= Order.human_attribute_name :address %></p>
+                <p><%= @order.address %></p>
+              <% end %>
           </div>
         </div>
 

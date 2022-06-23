@@ -21,6 +21,11 @@ class ItemsController < ApplicationController
   def stock 
     @shop = Shop.find(params[:id])
     @items = @shop.items
+
+    if @items.empty?
+      flash[:danger] = "商品を追加してください"
+      redirect_to shop_path(@shop)
+    end
   end
 
   # 在庫更新

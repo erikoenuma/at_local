@@ -17,8 +17,30 @@
     <%= form.password_field :password_confirmation, class:"form-control", autocomplete: "current-password", placeholder:"新しいパスワード(確認)", required: true, maxlength:"255",minlength: "6"%>
   </div>
 
+  <% if !shop_user?(current_user) %>
+
+    <%= form.label "エリア（変更する場合のみ）", class: "mb-2 fw-bold" %>
+    <small>＊設定するとトップページがそのエリアのショップ一覧になり検索しやすくなります</small>
+
+    <div class="d-flex mt-3">
+      <div class="region me-3">
+        <%= form.collection_select :region, Place.select(:region).distinct, :region, :region, {prompt: "地域を選択"}, { class:"form-select mb-3" } %>
+      </div>
+      <div class="prefecture me-3">
+        <%= form.collection_select :prefecture, [], :prefecture, :prefecture, {prompt: ""}, { class:"form-select mb-3", hidden:true } %>
+      </div>
+      <div class="area">
+        <%= form.collection_select :place_id, [], :id, :area, {prompt: ""}, { class:"form-select mb-3", hidden:true } %>
+      </div>
+    </div>
+
+  <% end %>
+
   <div class="text-center mt-4 pt-2">
     <%= form.submit "決定", class:"btn btn-default text-white btn-lg", style:"padding-left: 2.5rem; padding-right: 2.5rem;" %>
   </div>
 
 <% end %>
+
+<div id="placeData" data-place="<%= Place.all.to_json %>"></div>
+<div id="shoppingStreetData" data-shopping-street="<%= ShoppingStreet.all.to_json %>"></div>

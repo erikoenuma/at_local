@@ -16,6 +16,18 @@
               <h6 class="col-md-4"><%= @user.email %></h6>
             </div>
 
+            <% if @user.place_id.present? %>
+
+            <div class="row justify-content-center">
+              <h5 class="col-md-4"><%= User.human_attribute_name :place_id %>:</h5>
+              <h6 class="col-md-4"><%= @user.place.region %> ><br>
+                <%= @user.place.prefecture %> ><br>
+                <%= @user.place.area %>
+              </h6>
+            </div>
+
+            <% end %>
+
             <div class="row justify-content-center mt-4">
               <div class="col-md-3 mt-4">
                 <%= link_to t('helpers.links.edit'), edit_user_path(@user), class:"btn btn-default btn-lg text-white"%>

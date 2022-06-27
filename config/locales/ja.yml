@@ -16,6 +16,7 @@ ja:
         cancelable_days_before: 'キャンセル規定'
         private: '公開設定'
         place_id: 'エリア'
+        shopping_street_id: '商店街'
       place:
         region: '地方'
         prefecture: '都道府県'

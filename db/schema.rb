@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_23_074015) do
+ActiveRecord::Schema.define(version: 2022_06_24_013323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,12 @@ ActiveRecord::Schema.define(version: 2022_06_23_074015) do
     t.string "area", null: false
   end
 
+  create_table "shopping_streets", force: :cascade do |t|
+    t.bigint "place_id", null: false
+    t.string "name", null: false
+    t.index ["place_id"], name: "index_shopping_streets_on_place_id"
+  end
+
   create_table "shops", force: :cascade do |t|
     t.string "name", null: false
     t.string "address"
@@ -118,7 +124,9 @@ ActiveRecord::Schema.define(version: 2022_06_23_074015) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.bigint "place_id"
+    t.bigint "shopping_street_id"
     t.index ["place_id"], name: "index_shops_on_place_id"
+    t.index ["shopping_street_id"], name: "index_shops_on_shopping_street_id"
     t.index ["user_id"], name: "index_shops_on_user_id"
   end
 
@@ -141,6 +149,8 @@ ActiveRecord::Schema.define(version: 2022_06_23_074015) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "shops"
   add_foreign_key "orders", "users"
+  add_foreign_key "shopping_streets", "places"
   add_foreign_key "shops", "places"
+  add_foreign_key "shops", "shopping_streets"
   add_foreign_key "shops", "users"
 end

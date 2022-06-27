@@ -4,6 +4,8 @@ class Shop < ApplicationRecord
     has_many :carts, dependent: :destroy
     has_one_attached :image
     has_many :orders, dependent: :destroy
+    belongs_to :shopping_street
+    belongs_to :place
 
     enum cancelable_days_before: [ :today, :one, :two, :three, :four, :five, :six, :seven, :not_allowed ]
 

@@ -6,11 +6,22 @@
     <%= form.text_field :name, class:"form-control", autofocus: true, autocomplete: "name", placeholder:"ユーザー名", required: true, maxlength: "30" %>
   </div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <%= form.label :place_id, class:"mb-2" %>
-      <%= form.select :place_id, Place.all.map{|p| ["#{p.region} / #{p.prefecture} / #{p.area}", p.id ]}, {}, class:"form-select mb-3" %>
+  <%= form.label "エリア（変更する場合のみ）", class: "mb-2" %>
+
+  <div class="d-flex">
+    <div class="region me-3">
+      <%= form.collection_select :region, Place.select(:region).distinct, :region, :region, {prompt: "地域を選択"}, { class:"form-select mb-3" } %>
     </div>
+    <div class="prefecture me-3">
+      <%= form.collection_select :prefecture, [], :prefecture, :prefecture, {prompt: ""}, { class:"form-select mb-3", hidden:true } %>
+    </div>
+    <div class="area">
+      <%= form.collection_select :place_id, [], :id, :area, {prompt: ""}, { class:"form-select mb-3", hidden:true } %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.collection_select :shopping_street_id, [], :id, :name, {prompt: ""}, { class:"form-select mb-3", hidden:true } %>
   </div>
 
   <div class="field">
@@ -49,3 +60,6 @@
     <%= form.submit class: "btn btn-default col-md-2 mx-2" %>
   </div>
 <% end %>
+
+<div id="placeData" data-place="<%= Place.all.to_json %>"></div>
+<div id="shoppingStreetData" data-shopping-street="<%= ShoppingStreet.all.to_json %>"></div>

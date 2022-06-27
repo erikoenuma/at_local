@@ -46,6 +46,12 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                       <div class="ms-2 me-auto">
+                        <div class="fw-bold"><%= Shop.human_attribute_name :shopping_street_id %></div>
+                        <%= @shop.shopping_street_id.nil? ? "未設定": @shop.shopping_street.name %>
+                      </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                      <div class="ms-2 me-auto">
                         <div class="fw-bold"><%= Shop.human_attribute_name :address %></div>
                         <%= @shop.address %>
                       </div>

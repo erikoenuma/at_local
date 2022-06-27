@@ -37,6 +37,19 @@
 end
 
 [
+    ["14", "〇〇商店街"],
+    ["14", "some商店街"],
+    ["14", "▽▽商店街"],
+    ["14", "□□商店街"],
+    ["14", "☆☆商店街"]
+].each do |place_id, name|
+    ShoppingStreet.create({ 
+        place_id: place_id,
+        name: name
+     })
+end
+
+[
     ["〇〇八百屋", "testshop@test.com", "password", "password"],
     ["△△商店", "testshop2@test.com", "password", "password"],
     ["◇◇花屋", "testshop3@test.com", "password", "password"],
@@ -63,9 +76,9 @@ end
         抽選で３００名様に日本各地の美味しい名産品をプレゼント！
         当選者の発表は商品の発送をもってかえさせて頂きます。
         応募箱は各商店街に設置していますので、お買い物店舗でご確認ください。",
-        0, false],
+        0, false, rand(1..5)],
     ["2", "△△商店", "14", "〒111-1111 〇〇県◇◇市△区1-1-1", "□□駅から徒歩2分",
-        "6月24日㈮25日㈯は当店のポイント2倍進呈です。是非ご利用ください！", 1, false],
+        "6月24日㈮25日㈯は当店のポイント2倍進呈です。是非ご利用ください！", 1, false, rand(1..5)],
     ["3", "◇◇花屋", "14", "〒111-1111 〇〇県◇◇市△区1-1-1", "□□駅から徒歩3分",
         "▽商店街初夏のスタンプ祭りに参加しています！
         概要：
@@ -76,10 +89,10 @@ end
         
         スタンプ捺印期間：5/21（土）～6/5（日）
         ３００円券使用期間：5/21（土）～6/13（月）",
-        2, false],
-    ["4", "☆魚屋", "14", "〒111-1111 〇〇県◇◇市△区1-1-1", "□□駅から徒歩4分", "本日限定！国産うなぎ格安で販売しています！", 3, false],
-    ["5", "〇×精肉店", "14", "〒111-1111 〇〇県◇◇市△区1-1-1", "□□駅から徒歩5分", "毎月肉の日（29日）に特売実施中！", 8, false]
-].each do |user_id, name, place_id, address, access, introduction, cancelable_days_before, private|
+        2, false, rand(1..5)],
+    ["4", "☆魚屋", "14", "〒111-1111 〇〇県◇◇市△区1-1-1", "□□駅から徒歩4分", "本日限定！国産うなぎ格安で販売しています！", 3, false, rand(1..5)],
+    ["5", "〇×精肉店", "14", "〒111-1111 〇〇県◇◇市△区1-1-1", "□□駅から徒歩5分", "毎月肉の日（29日）に特売実施中！", 8, false, rand(1..5)]
+].each do |user_id, name, place_id, address, access, introduction, cancelable_days_before, private, shopping_street_id|
     Shop.create({ 
         user_id: user_id,
         name: name,
@@ -88,7 +101,8 @@ end
         access: access,
         introduction: introduction,
         cancelable_days_before: cancelable_days_before,
-        private: private
+        private: private,
+        shopping_street_id: shopping_street_id
      })
 end
 

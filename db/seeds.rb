@@ -61,7 +61,7 @@ end
     ["testuser4", "testuser4@test.com", "password", "password"],
     ["testuser5", "testuser5@test.com", "password", "password"],
 ].each do |name, email, password, password_confirmation|
-    User.create({ 
+    User.create!({ 
         name: name,
         email: email,
         password: password,
@@ -93,7 +93,7 @@ end
     ["4", "☆魚屋", "14", "〒111-1111 〇〇県◇◇市△区1-1-1", "□□駅から徒歩4分", "本日限定！国産うなぎ格安で販売しています！", 3, false, rand(1..5)],
     ["5", "〇×精肉店", "14", "〒111-1111 〇〇県◇◇市△区1-1-1", "□□駅から徒歩5分", "毎月肉の日（29日）に特売実施中！", 8, false, rand(1..5)]
 ].each do |user_id, name, place_id, address, access, introduction, cancelable_days_before, private, shopping_street_id|
-    Shop.create({ 
+    Shop.create!({ 
         user_id: user_id,
         name: name,
         place_id: place_id,
@@ -123,7 +123,7 @@ end
     ["5","合いびき肉（250g）", 500, "国産の牛・豚合いびき肉です。ハンバーグなどにどうぞ", false, 100],
     ["5","牛細切れ200g", 420, "国産牛こま切れ肉です。肉じゃがやカレーにどうぞ。", false, 30]
 ].each do |shop_id, name, price, description, private, counts|
-    Item.create({ 
+    Item.create!({ 
         shop_id: shop_id,
         name: name,
         price: price,
@@ -278,4 +278,17 @@ end
         sender: sender,
         comments: comments
      })
+end
+
+Order.all.each do |order|
+    Notification.create(sender_id: order.user.id, receiver_id: order.shop.user.id, order_id: order.id, action: :ordered)
+end
+
+Message.all.each do |message|
+    case message.sender
+    when 'customer'
+        Notification.create!(sender_id: message.order.user.id, receiver_id: message.order.shop.user.id, order_id: message.order.id, action: :message)
+    when 'shop'
+        Notification.create!(sender_id: message.order.shop.user.id, receiver_id: message.order.user.id, order_id: message.order.id, action: :message)
+    end
 end

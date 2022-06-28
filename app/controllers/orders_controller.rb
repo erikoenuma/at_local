@@ -24,8 +24,8 @@ class OrdersController < ApplicationController
     @messages = @order.messages
     @message = Message.new
     
-    # その店舗の通知を既読にする
-    @order.notifications.where(checked: false).each do |notification|
+    # その注文の通知を既読にする
+    @order.notifications.where(checked: false, receiver_id: current_user.id).each do |notification|
       notification.update(checked: true)
     end
   end

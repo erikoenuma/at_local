@@ -48,7 +48,7 @@
               <%= form_with(model: @order, url: order_path, local: true ) do |form|%>
                 <div class="d-flex align-items-center">
 
-                  <% if (@order.status == 'canceled') || (order.status == 'completed') %>
+                  <% if (@order.status == 'canceled') || (@order.status == 'completed') %>
                     <div><%= Order.human_attribute_name :status %>: <%= @order.status_i18n %></div>
                   <% else %>
                     <div><%= Order.human_attribute_name :status %>: </div>

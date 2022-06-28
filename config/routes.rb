@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get :reorder
       resources :messages, only: [:create]
       put :cancel
+      put :finish_purchase
     end
     collection do
       get :reset_conditions
@@ -55,6 +56,8 @@ Rails.application.routes.draw do
 
   get "/prefecture", to: 'places#prefectures'
   get "/areas", to: 'places#areas'
+  get "/areas/:id/search", to: 'places#search', as: :search
   get "/home", to: 'homes#home'
+  get "/notifications", to: 'notifications#index'
 
 end

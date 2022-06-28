@@ -1,9 +1,18 @@
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-11 mx-auto">
-            <div class="row mt-4 align-items-center">
-              <div class="col-9"><h1><%= @area.area %>の店舗一覧</h1></div>
-              <div class="col-3"><%= link_to t('helpers.links.back'), :back, class:"btn btn-primary text-white btn-sm my-5" %></div>
+            <div class="mt-5 align-items-center">
+              <div class="col-12"><h1><%= @area.area %>の店舗一覧</h1></div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="me-3"><%= link_to t('helpers.links.back'), areas_path(@q, :'q[prefecture_eq' => "#{@area.prefecture}"), class:"btn btn-primary text-white btn-sm my-3" %></div>
+              <%= link_to "商店街で絞り込み", search_path(@area), class:"btn btn-outline-default btn-sm" %>
+              <% if @shopping_streets.present? %>
+                <span class="ms-3 me-1">絞り込み中: </span>
+                <% @shopping_streets.each do |shopping_street| %>
+                    <span class="me-2"><%= shopping_street.name %></span>
+                <% end %>
+              <% end %>
             </div>
 
             <div class="album py-5 table-background">

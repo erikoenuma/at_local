@@ -6,6 +6,12 @@ class ShopsController < ApplicationController
   def index
     @q = Shop.ransack(params[:q])
     @area = Place.find(params[:q][:place_id_eq])
+    @shopping_streets = []
+    if params[:q][:shopping_street_id_eq_any].present?
+      params[:q][:shopping_street_id_eq_any].each do |id|
+        @shopping_streets << ShoppingStreet.find(id)
+      end
+    end
     @shops = @q.result
   end
 

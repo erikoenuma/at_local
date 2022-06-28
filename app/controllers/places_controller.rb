@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
     skip_before_action :login_required
-    before_action :set_q
+    before_action :set_q, except: [:search]
 
     def prefectures
         # distinctメソッドで重複を避ける
@@ -12,6 +12,12 @@ class PlacesController < ApplicationController
         @areas = @q.result
         # 結果を取得したら検索条件を変更する
         @q = Shop.ransack(params[:q])
+    end
+
+    def search
+        @q = Shop.ransack(params[:q])
+        @area = Place.find(params[:id])
+        @shopping_streets = @area.shopping_streets
     end
 
     private

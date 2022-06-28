@@ -22,11 +22,17 @@ module OrdersHelper
         when 'not_allowed' then
             return false
         else
-            order.status != ('canceled' || 'completed') &&
+            ((order.status == 'not_paid') || (order.status == 'yet_sent' )) &&
             # 店舗側はいつでもキャンセルできる
             (shop_user?(current_user) ||
+            # キャンセル可能日に準ずる
             Date.today - Shop.cancelable_days_befores[order.shop.cancelable_days_before] >= Time.current.to_date)
         end
+    end
+
+    # 取引完了可能かどうか
+    def completable?(order)
+        (order.status == 'delivered') || (order.status == 'sent')
     end
 
 end

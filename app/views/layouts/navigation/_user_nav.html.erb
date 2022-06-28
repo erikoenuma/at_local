@@ -19,6 +19,13 @@
         <a class="nav-link-default" href="#" onclick="alert('準備中です')">お気に入り</a>
     </li>
     <li class="nav-item">
+        <a class="nav-link-default d-flex" href="/notifications">お知らせ
+            <% if has_unchecked_notifications? %>
+                <div class="notification"></div>
+            <% end %>
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link-default" href='/users/<%= current_user.id %>'>アカウント</a>
-    </li>    
+    </li> 
 </ul>

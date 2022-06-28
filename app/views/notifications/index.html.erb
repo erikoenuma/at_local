@@ -1,0 +1,44 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center">
+
+        <h1 class="col-xl-9 my-4"><%= t('.title') %></h1>
+        <div class="col-xl-9">
+
+            <% if @notifications.length == 0 %>
+                <p>お知らせはありません</p>
+            <% else %>
+
+                <div class="container table-background">
+                    <table class="table table-hover">
+
+                        <thead class="thead-order">
+                            <tr>
+                                <th>日付け</th>
+                                <th>内容</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% @notifications.each do |notification| %>
+                                <tr style="cursor: hand; cursor:pointer;", onclick="window.location = './orders/<%= notification.order.id %>'">
+                                    <td>
+                                        <%= datetime_string(notification.created_at) %>
+                                        <% if !notification.checked %>
+                                            <span class="badge rounded-pill btn-default">新着</span>
+                                        <% end %>
+                                    </td>
+                                    <td><%= notification.contents %></td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+
+                    </table>
+                </div>
+            <% end %>
+
+        </div>
+
+    </div>
+  </div>
+</section>

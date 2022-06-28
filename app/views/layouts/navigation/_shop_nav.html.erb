@@ -2,7 +2,11 @@
 
 <ul class="navbar-nav">
     <li class="nav-item">
-        <a class="nav-link-default" href="#" onclick="alert('準備中です')">お知らせ</a>
+        <a class="nav-link-default d-flex" href="/notifications">お知らせ
+            <% if has_unchecked_notifications? %>
+                <span class="notification my-0"></span>
+            <% end %>
+        </a>
     </li>
     <li class="nav-item">
         <a class="nav-link-default" href="/orders">受注一覧画面</a>

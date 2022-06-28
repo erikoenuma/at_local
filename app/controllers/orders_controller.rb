@@ -23,6 +23,11 @@ class OrdersController < ApplicationController
   def show
     @messages = @order.messages
     @message = Message.new
+    
+    # その店舗の通知を既読にする
+    @order.notifications.where(checked: false).each do |notification|
+      notification.update(checked: true)
+    end
   end
 
   # GET /orders/new
@@ -53,6 +58,9 @@ class OrdersController < ApplicationController
         # cartを削除
         @cart.destroy
 
+        # 通知を保存する
+        @order.notifications.new(sender_id: @order.user.id, receiver_id: @order.shop.id, action: :ordered).save!
+
         format.html { redirect_to completed_order_path(@order) }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -78,11 +86,19 @@ class OrdersController < ApplicationController
   # PATCH/PUT /orders/1 or /orders/1.json
   def update
     respond_to do |format|
-      if @order.update(order_params)
+      if @order.update!(order_params)
+        
+        receiver = (@order.user == current_user) ? @order.shop.user : @order.user
+        @notification = @order.notifications.new(sender_id: @current_user.id, receiver_id: receiver.id)
+        @notification.action = :status_changed
+
+        # 通知を保存する
+        @notification.save!
+
         flash[:success] = t('.success')
         format.html { redirect_to order_url(@order) }
       else
-        format.html { render :show, status: :unprocessable_entity }
+        format.html { redirect_to order_url(@order), status: :unprocessable_entity }
       end
     end
   end
@@ -90,10 +106,15 @@ class OrdersController < ApplicationController
   def cancel
     respond_to do |format|
       if @order.update(status: :canceled)
+        receiver = (@order.user == current_user) ? @order.shop.user : @order.user
+        @notification = @order.notifications.new(sender_id: @current_user.id, receiver_id: receiver.id)
+        @notification.action = :canceled
+        @notification.save!
+
         flash[:success] = t('.success')
         format.html { redirect_to order_url(@order) }
       else
-        format.html { render :show, status: :unprocessable_entity }
+        format.html { redirect_to order_url(@order), status: :unprocessable_entity }
       end
     end
   end

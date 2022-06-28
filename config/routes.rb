@@ -56,5 +56,6 @@ Rails.application.routes.draw do
   get "/prefecture", to: 'places#prefectures'
   get "/areas", to: 'places#areas'
   get "/home", to: 'homes#home'
+  get "/notifications", to: 'notifications#index'
 
 end

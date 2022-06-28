@@ -62,6 +62,7 @@ ja:
         six: '6日前まで'
         seven: '7日前まで'
         not_allowed: 'キャンセル不可'
+
   users:
     new:
       title: 'アカウント作成'
@@ -139,6 +140,9 @@ ja:
       success: 'ステータスを更新しました'
     cancel:
       success: '注文をキャンセルしました'
+  notifications:
+    index:
+      title: 'お知らせ'
     
   helpers:
     submit:

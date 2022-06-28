@@ -36,7 +36,7 @@ ja:
         delivery_method: '受け渡し方法'
         deliver_date: '受け渡し日時'
         status: 'ステータス'
-        address: '配送先住所（配送の場合のみ記入してください）'
+        address: '配送先住所（同じエリア内のみ配送可能です。配送の場合のみ記入してください）'
   enums:
     order:
       payment_method:
@@ -105,6 +105,8 @@ ja:
   places:
     prefectures:
       title: '都道府県を選択'
+    search:
+      title: '商店街で絞り込み'
   items:
     new:
       title: '商品追加'

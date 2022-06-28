@@ -24,7 +24,7 @@
                             <p class="mb-0"><%= datetime_string(order.created_at) %></p>
                         </div>
                         <div>
-                            <% if order.status == ('canceled' || 'completed') %>
+                            <% if (order.status == 'canceled') || (order.status == 'completed')  %>
                                 <span class="badge rounded-pill btn-default"><%= order.status_i18n %></span>
                             <% else %>
                                 <span class="badge rounded-pill bg-success-default"><%= order.status_i18n %></span>

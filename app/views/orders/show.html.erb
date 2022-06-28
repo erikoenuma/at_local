@@ -48,7 +48,7 @@
               <%= form_with(model: @order, url: order_path, local: true ) do |form|%>
                 <div class="d-flex align-items-center">
 
-                  <% if @order.status == ('canceled' || 'completed') %>
+                  <% if (@order.status == 'canceled') || (order.status == 'completed') %>
                     <div><%= Order.human_attribute_name :status %>: <%= @order.status_i18n %></div>
                   <% else %>
                     <div><%= Order.human_attribute_name :status %>: </div>
@@ -78,6 +78,9 @@
             <%= link_to t('helpers.links.back'), orders_path, class:"btn btn-outline-secondary me-5" %>
             <% if cancelable?(@order) %>
               <%= link_to t('helpers.links.cancel'), cancel_order_path(@order),method: :put, data: { confirm:'本当にキャンセルしてもよろしいですか？' }, class:"btn btn-outline-default" %>
+            <% end %>
+            <% if completable?(@order) %>
+              <%= link_to "取引完了", finish_purchase_order_path(@order), method: :put, data: { confirm:'商品を受け取ったことを確認してください。取引を終了してもよろしいですか？' }, class:"btn btn-outline-default" %>
             <% end %>
         </div>
 

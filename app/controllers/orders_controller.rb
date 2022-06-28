@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: %i[ show edit update destroy cancel ]
+  before_action :set_order, only: %i[ show edit update destroy cancel finish_purchase ]
   before_action :user_account_required, except: [:index, :show, :update, :cancel, :reset_conditions]
 
   # GET /orders or /orders.json
@@ -109,6 +109,23 @@ class OrdersController < ApplicationController
         receiver = (@order.user == current_user) ? @order.shop.user : @order.user
         @notification = @order.notifications.new(sender_id: @current_user.id, receiver_id: receiver.id)
         @notification.action = :canceled
+        @notification.save!
+
+        flash[:success] = t('.success')
+        format.html { redirect_to order_url(@order) }
+      else
+        format.html { redirect_to order_url(@order), status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # 取引完了する
+  def finish_purchase
+    respond_to do |format|
+      if @order.update(status: :completed)
+        receiver = (@order.user == current_user) ? @order.shop.user : @order.user
+        @notification = @order.notifications.new(sender_id: @current_user.id, receiver_id: receiver.id)
+        @notification.action = :completed
         @notification.save!
 
         flash[:success] = t('.success')

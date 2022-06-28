@@ -140,6 +140,8 @@ ja:
       success: 'ステータスを更新しました'
     cancel:
       success: '注文をキャンセルしました'
+    finish_purchase:
+      success: '取引を完了しました'
   notifications:
     index:
       title: 'お知らせ'

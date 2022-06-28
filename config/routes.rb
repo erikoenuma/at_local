@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get :reorder
       resources :messages, only: [:create]
       put :cancel
+      put :finish_purchase
     end
     collection do
       get :reset_conditions

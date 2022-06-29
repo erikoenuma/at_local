@@ -28,14 +28,17 @@
 
             <% end %>
 
-            <div class="row justify-content-center mt-4">
-              <div class="col-md-3 mt-4">
+            <div class="d-flex justify-content-center mt-4">
+              <div class="me-3">
+                <%= link_to "配送先を管理", addresses_path, class:"btn btn-outline-default btn-lg"%>
+              </div>
+              <div class="me-3">
                 <%= link_to t('helpers.links.edit'), edit_user_path(@user), class:"btn btn-default btn-lg text-white"%>
               </div>
-              <div class="col-md-4 mt-4">
+              <div class="me-3">
                 <%= link_to "ログアウト", session_path, method: :delete, class:"btn btn-secondary btn-lg text-white"%>
               </div>
-              <div class="col-md-3 mt-4">
+              <div class="me-3">
                 <%= link_to t('helpers.links.destroy'), user_path, method: :delete, data: { confirm: t('common.confirm_destroy') }, class:"btn btn-outline-secondary btn-lg"%>
               </div>
             </div>

@@ -37,6 +37,11 @@ ja:
         deliver_date: '受け渡し日時'
         status: 'ステータス'
         address: '配送先住所（同じエリア内のみ配送可能です。配送の場合のみ記入してください）'
+      address:
+        zipcode: '郵便番号'
+        address: '住所'
+        building_name: '建物名・部屋番号'
+        name: '宛名'
   enums:
     order:
       payment_method:
@@ -147,6 +152,19 @@ ja:
   notifications:
     index:
       title: 'お知らせ'
+  addresses:
+    index:
+      title: '配送先'
+    new:
+      title: '配送先追加'
+    edit:
+      title: '配送先編集'
+    create:
+      success: '配送先を追加しました'
+    update:
+      success: '配送先を更新しました'
+    destroy:
+      success: '配送先を削除しました'
     
   helpers:
     submit:

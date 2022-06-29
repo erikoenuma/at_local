@@ -34,7 +34,9 @@
 
   <div class="col-md-12">
     <%= form.label :address, class:"mb-3" %>
-    <%= form.text_field :address, class:"form-control", autofocus: true, autocomplete: "address", maxlength: "255" %>
+    <small>住所を選択、または記入してください</small>
+    <%= form.select :address_select, [addresses_array(current_user.addresses)], { include_blank: "記入する"}, {class:"form-select mb-3", id:"address_select"} %>
+    <%= form.text_field :address, class:"form-control", id: "address_text", autofocus: true, autocomplete: "address", maxlength: "255" %>
   </div>
 
   <div class="col-md-12 mt-3">

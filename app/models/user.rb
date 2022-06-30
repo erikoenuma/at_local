@@ -7,5 +7,6 @@ class User < ApplicationRecord
     has_one :shop, dependent: :destroy
     has_many :carts, dependent: :destroy
     has_many :orders, dependent: :destroy
+    has_many :addresses, dependent: :destroy
     belongs_to :place, optional: true
 end

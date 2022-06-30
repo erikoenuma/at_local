@@ -35,4 +35,12 @@ module OrdersHelper
         (order.status == 'delivered') || (order.status == 'sent')
     end
 
+    # 住所選択の中身
+    def addresses_array(addresses)
+        addresses.map do |address|
+            addressString = address.zipcode + ' ' + address.address + ' ' + address.building_name + ' ' + address.name + '様'
+            return [addressString, addressString]
+        end
+    end
+
 end

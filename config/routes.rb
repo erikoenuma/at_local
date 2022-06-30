@@ -54,6 +54,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :addresses, except: [:show]
+
   get "/prefecture", to: 'places#prefectures'
   get "/areas", to: 'places#areas'
   get "/areas/:id/search", to: 'places#search', as: :search

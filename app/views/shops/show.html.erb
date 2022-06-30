@@ -64,6 +64,12 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                       <div class="ms-2 me-auto">
+                        <div class="fw-bold"><%= Shop.human_attribute_name :telephone_number %></div>
+                        <%= @shop.telephone_number %>
+                      </div>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                      <div class="ms-2 me-auto">
                         <div class="fw-bold"><%= Shop.human_attribute_name :cancelable_days_before %></div>
                         <%= @shop.cancelable_days_before_i18n %>
                       </div>

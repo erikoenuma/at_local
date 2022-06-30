@@ -12,6 +12,7 @@ class ShopsController < ApplicationController
         @shopping_streets << ShoppingStreet.find(id)
       end
     end
+    @item = params[:q][:items_name_cont]
     @shops = @q.result
   end
 
@@ -60,6 +61,6 @@ class ShopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shop_params
-      params.require(:shop).permit(:place_id, :name, :address, :access, :introduction, :cancelable_days_before, :private, :image, :shopping_street_id)
+      params.require(:shop).permit(:place_id, :name, :address, :access, :introduction, :cancelable_days_before, :private, :image, :shopping_street_id, :telephone_number)
     end
 end

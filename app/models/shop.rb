@@ -4,8 +4,8 @@ class Shop < ApplicationRecord
     has_many :carts, dependent: :destroy
     has_one_attached :image
     has_many :orders, dependent: :destroy
-    belongs_to :shopping_street
-    belongs_to :place
+    belongs_to :shopping_street, optional: true
+    belongs_to :place, optional: true
 
     enum cancelable_days_before: [ :today, :one, :two, :three, :four, :five, :six, :seven, :not_allowed ]
 
@@ -14,4 +14,5 @@ class Shop < ApplicationRecord
     validates :access, length: { maximum: 255 }
     validates :introduction, length: { maximum: 1000, too_long: "最大%{count}文字まで使えます"}
     validates :private, inclusion: {in: [true, false]}
+    validates :telephone_number, length: { maximum: 13, minimum: 10 }, allow_blank: true
 end

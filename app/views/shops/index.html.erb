@@ -6,13 +6,20 @@
             </div>
             <div class="d-flex align-items-center">
               <div class="me-3"><%= link_to t('helpers.links.back'), areas_path(@q, :'q[prefecture_eq' => "#{@area.prefecture}"), class:"btn btn-primary text-white btn-sm my-3" %></div>
-              <%= link_to "商店街で絞り込み", search_path(@area), class:"btn btn-outline-default btn-sm" %>
+              <%= link_to "絞り込み検索", search_path(@area), class:"btn btn-outline-default btn-sm" %>
+
               <% if @shopping_streets.present? %>
                 <span class="ms-3 me-1">絞り込み中: </span>
                 <% @shopping_streets.each do |shopping_street| %>
                     <span class="me-2"><%= shopping_street.name %></span>
                 <% end %>
               <% end %>
+
+              <% if @item.present? %>
+                <span class="ms-3 me-1">キーワード: </span>
+                <span><%= @item %></span>
+              <% end %>
+
             </div>
 
             <div class="album py-5 table-background">

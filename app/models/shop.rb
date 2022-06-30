@@ -14,4 +14,5 @@ class Shop < ApplicationRecord
     validates :access, length: { maximum: 255 }
     validates :introduction, length: { maximum: 1000, too_long: "最大%{count}文字まで使えます"}
     validates :private, inclusion: {in: [true, false]}
+    validates :telephone_number, length: { maximum: 13, minimum: 10}
 end

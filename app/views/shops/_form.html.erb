@@ -35,6 +35,11 @@
   </div>
 
   <div class="field">
+    <%= form.label :telephone_number, class:"mb-2" %>
+    <%= form.text_field :telephone_number, class:"form-control", autofocus: true, autocomplete: "telephone_number", placeholder:"000-0000-0000", maxlength: "13", minlength: "10"%>
+  </div>
+
+  <div class="field">
     <%= form.label :introduction, class: "mb-2" %>
     <%= form.text_area :introduction, class:"form-control", autofocus: true, maxlength: "1000", rows:"5" %>
   </div>

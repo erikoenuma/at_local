@@ -13,6 +13,7 @@ ja:
         name: '店舗名'
         address: '住所'
         access: 'アクセス'
+        telephone_number: '電話番号'
         introduction: '紹介文'
         cancelable_days_before: 'キャンセル規定'
         private: '公開設定'

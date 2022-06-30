@@ -112,7 +112,7 @@ ja:
     prefectures:
       title: '都道府県を選択'
     search:
-      title: '商店街で絞り込み'
+      title: '絞り込み検索'
   items:
     new:
       title: '商品追加'

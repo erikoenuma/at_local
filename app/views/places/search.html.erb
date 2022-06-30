@@ -8,15 +8,20 @@
 
             <%# ransack %>
             <%= search_form_for @q, url: shops_path do |f|%>
+                <p class="col-md-2 fw-bold mx-3">商店街で絞り込み</p>
                 <div class="d-flex align-items-center mx-3 my-3">
                     <% @shopping_streets.each do |shopping_street| %>
                         <%= f.check_box :shopping_street_id_eq_any, {class:"form-check-input", multiple:true}, shopping_street.id, nil %>
                         <label class="form-check-label me-3 ms-1"><%= shopping_street.name %></label>
                     <% end %>
                 </div>
+                <div class="d-flex align-items-center mx-3 my-3">
+                    <p class="col-md-2 fw-bold mb-0">商品名で絞り込み</p>
+                    <%= f.text_field :items_name_cont, class:"form-control" %>
+                </div>
                 <%= f.hidden_field :place_id_eq, :value => @area.id %>
                 <%= f.hidden_field :private_eq, :value => false %>
-                <%= f.submit "検索", class:"btn btn-outline-default me-3" %>
+                <%= f.submit "検索", class:"btn btn-outline-default mx-3" %>
             <% end %>
         </div>
     </div>

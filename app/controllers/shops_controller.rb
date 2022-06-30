@@ -12,6 +12,7 @@ class ShopsController < ApplicationController
         @shopping_streets << ShoppingStreet.find(id)
       end
     end
+    @item = params[:q][:items_name_cont]
     @shops = @q.result
   end
 

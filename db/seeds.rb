@@ -70,6 +70,22 @@ end
 end
 
 [
+    ["6", "111-1111", "○○県▽▽市1-1-1", "hogehogeビル305", "testuser"],
+    ["7", "111-1111", "○○県▽▽市2-1-1", "hogehogeビル201", "testuser2"],
+    ["8", "111-1111", "○○県▽▽市3-1-1", "hogehogeビル333", "testuser3"],
+    ["9", "111-1111", "○○県▽▽市4-1-1", "hogehogeビル402", "testuser4"],
+    ["10", "111-1111", "○○県▽▽市5-1-1", "hogehogeビル501", "testuser5"],
+].each do |user_id, zipcode, address, building_name, name|
+    Address.create({ 
+        user_id: user_id,
+        zipcode: zipcode,
+        address: address,
+        building_name: building_name,
+        name: name
+     })
+end
+
+[
     ["1", "〇〇八百屋", "14", "〒111-1111 〇〇県◇◇市△区1-1-1", "□□駅から徒歩1分", 
         "「☆☆商店街レシートキャンペーン実施中」6/21～7/1に、お買い上げ1,000円(税込)以上のレシートをクーポン券に貼って、
         必要事項を記入して備え付けの応募箱にご応募下さい。

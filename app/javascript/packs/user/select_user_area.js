@@ -48,7 +48,6 @@ $('.region').change(function(e) {
 
   // 最初の県のエリアを表示
   const firstPlace = places.filter(place => place.region == regionForm.value)[0];
-  console.log(firstPlace);
   showArea(firstPlace.prefecture, areaForm);
   
 })

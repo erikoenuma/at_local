@@ -51,7 +51,7 @@ class UsersController < ApplicationController
         
         flash[:success] = t('.success')
         log_in(@user)
-        format.html { redirect_to user_url(@user) }
+        format.html { redirect_to shop_url(@shop) }
       else
         format.html { render :new_shop, status: :unprocessable_entity }
       end

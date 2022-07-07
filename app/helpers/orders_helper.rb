@@ -32,7 +32,7 @@ module OrdersHelper
 
     # 取引完了可能かどうか
     def completable?(order)
-        (order.status == 'delivered') || (order.status == 'sent') || (order.status == 'canceled') || (order.status == 'completed')
+        (order.status == 'delivered') || (order.status == 'sent')
     end
 
     # 住所選択の中身
@@ -66,7 +66,7 @@ module OrdersHelper
         if order.notifications.where(receiver_id:current_user.id, checked: false).length > 0
             return 'bg-warning'
         # 何もアクションする必要がないもの
-        elsif (order.status == 'delivered') || (order.status == 'sent') || (order.status == 'canceled')
+        elsif (order.status == 'delivered') || (order.status == 'sent') || (order.status == 'canceled') || (order.status == 'completed')
             return 'bg-secondary'
         else
             return nil    

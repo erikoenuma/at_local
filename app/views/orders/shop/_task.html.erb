@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="align-items-end col-md-3">
-                        <% if !completable?(order) %>
+                        <% if !order.completed? %>
                             <%= form_with(model: order, url: order_path(order), local: true) do |form| %>
                                 <%= form.hidden_field :status, value: complete_status(order.delivery_method) %>
                                 <%= form.submit complete_btn(order.delivery_method), class:"btn btn-outline-default" %>

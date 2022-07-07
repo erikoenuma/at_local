@@ -44,4 +44,12 @@ class Order < ApplicationRecord
     self.deliver_date.month == Date.today.month &&
     self.deliver_date.day == Date.today.day
   end
+
+  # 次の操作が可能かどうか
+  def completed?
+    (self.status == 'canceled') || 
+    (self.status == 'completed') || 
+    (self.status == 'sent') || 
+    (self.status == 'delivered')
+  end
 end

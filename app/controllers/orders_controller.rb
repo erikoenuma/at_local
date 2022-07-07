@@ -142,8 +142,8 @@ class OrdersController < ApplicationController
   end
 
   def today
-    yet = current_user.shop.orders.select{|p| p.today? && p.status != ('delivered' || 'sent' || 'canceled' || 'completed') }.sort_by{|p| p.deliver_date }
-    done = current_user.shop.orders.select{|p| p.today? && p.status == ('delivered' || 'sent' || 'canceled' || 'completed') }.sort_by{|p| p.deliver_date }
+    yet = current_user.shop.orders.select{|p| p.today? && !p.completed? }.sort_by{|p| p.deliver_date }
+    done = current_user.shop.orders.select{|p| p.today? && p.completed? }.sort_by{|p| p.deliver_date }
     @orders = yet + done
   end
 

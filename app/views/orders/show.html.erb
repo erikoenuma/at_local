@@ -75,7 +75,7 @@
         </div>
 
         <div class="my-5 d-flex">
-            <%= link_to t('helpers.links.back'), orders_path, class:"btn btn-outline-secondary me-5" %>
+            <%= link_to t('helpers.links.back'), :back, class:"btn btn-outline-secondary me-5" %>
             <% if cancelable?(@order) %>
               <%= link_to t('helpers.links.cancel'), cancel_order_path(@order),method: :put, data: { confirm:'本当にキャンセルしてもよろしいですか？' }, class:"btn btn-outline-default" %>
             <% end %>

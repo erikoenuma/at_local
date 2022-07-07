@@ -32,7 +32,7 @@ module OrdersHelper
 
     # 取引完了可能かどうか
     def completable?(order)
-        (order.status == 'delivered') || (order.status == 'sent')
+        (order.status == 'delivered') || (order.status == 'sent') || (order.status == 'canceled') || (order.status == 'completed')
     end
 
     # 住所選択の中身

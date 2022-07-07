@@ -111,6 +111,11 @@ class OrdersController < ApplicationController
         @notification.action = :canceled
         @notification.save!
 
+        # 在庫を戻す
+        @order.items.each do |item|
+          @order.shop.items.find(item.id).increment!(:counts, 1)
+        end
+
         flash[:success] = t('.success')
         format.html { redirect_to order_url(@order) }
       else

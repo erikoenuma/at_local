@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :carts, through: :cart_items
   has_many :orders, through: :order_items
+  has_many :sale_items, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 30 }
   validates :price, presence: true, numericality: { in:1..999999 }

@@ -89,6 +89,36 @@ class ItemsController < ApplicationController
     end
   end
 
+  def sale_items
+    @shop = Shop.find(params[:id])
+    @items = @shop.items
+    @sale_items = @shop.sale_items.map{ |p| @shop.items.find(p.item_id) }
+    @sale_item = @shop.sale_items.new
+  end
+
+  def configure_sale_items
+    @shop = Shop.find(params[:id])
+    if params[:sale_item].present?
+      @items = params[:sale_item][:item_id].map{ |p| @shop.items.find(p) }
+    else
+      @items = []
+    end
+
+    # 4つ以上選択不可
+    if @items.length > 4
+      flash[:danger] = '特売商品は4つ以上選択できません'
+      redirect_to sale_items_items_path(@shop)
+    else
+      @shop.sale_items = []
+      @items.each do |item|
+        @shop.sale_items << @shop.sale_items.new(item_id: item.id)
+      end
+      flash[:success] = '特売商品を更新しました'
+      redirect_to shop_path(@shop)
+    end
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item

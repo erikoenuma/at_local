@@ -6,6 +6,7 @@ class Shop < ApplicationRecord
     has_many :orders, dependent: :destroy
     belongs_to :shopping_street, optional: true
     belongs_to :place, optional: true
+    has_many :sale_items, dependent: :destroy
 
     enum cancelable_days_before: [ :today, :one, :two, :three, :four, :five, :six, :seven, :not_allowed ]
 

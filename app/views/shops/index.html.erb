@@ -22,25 +22,60 @@
 
             </div>
 
-            <div class="album py-5 table-background">
-                <div class="container">
 
-                    <div class="row">
+        <% @shops.each do |shop| %>
 
-                        <% @shops.each do |shop| %>
-                        <div class="col-md-4">
-                            <a href="/shops/<%= shop.id %>/top" class="card mb-4">
-                                <img class="card-img-top" src=<%= rails_blob_path(shop.image) if shop.image.present? %> alt="Card image cap">
-                                <div class="card-body">
-                                    <p class="card-text"><%= shop.name %></p>
+        <div class="card-form shadow-2-strong card-registration mb-5">
+          <div class="card-body p-4 p-md-5">
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="preview-image mb-3">
+                    <img src=<%= rails_blob_path(shop.image) if shop.image.present? %>, class="item-image">
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <%= link_to shop.name, top_shop_path(shop), class:"h3" %>
+                  <div class="mt-5">
+                    <%= shop.introduction %>
+                  </div>
+                </div>
+              </div>
+
+              <% unless shop.sale_items.length == 0 %>
+              <hr>
+                <h4>特売商品</h4>
+
+                <div class="album py-3">
+                    <div class="container">
+
+                        <div class="row">
+
+                            <% sale_items(shop.sale_items).each do |item| %>
+                                <div class="col-md-3 card-group">
+                                    <a href="/shops/<%= shop.id %>/items/<%= item.id %>" class="card mb-4">
+                                        <img class="card-img-top" src=<%= rails_blob_path(item.image) if item.image.present? %> alt="Card image cap">
+                                        <div class="card-body align-items-center">
+                                            <h5 class="card-text"><%= item.name %></h5>
+                                            <div class="text-end">
+                                                <small class="text-default fw-bold"><%= item.price %>円</small><br />
+                                            </div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
+                            <% end %>
                         </div>
-                        <% end %>
-
                     </div>
                 </div>
+
+              <% end %>
+              
             </div>
+        </div>
+
+      <% end %>
+
         </div>
     </div>
 </div>

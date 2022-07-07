@@ -1,0 +1,61 @@
+<div class="col-xl-9">
+
+    <% orders.each do |order| %>
+
+        <div class="card-form shadow-2-strong card-registration mb-5 <%= today_order_bg(order) %>">
+            <div class="card-body p-4 p-md-5">
+
+                <% if unchecked_notifications(order).length > 0 %>
+                    <% unchecked_notifications(order).each do |notification| %>
+                        <div class="mb-4">
+                            <span class="bg-danger rounded-pill px-1 py-1 text-white"><%= notification.contents %></span>
+                        </div>
+                    <% end %>
+                <% end %>
+
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <h3 class="fw-bold"><%= time_string(order.deliver_date) %></h3>
+                    </div>
+
+                    <div class="col-md-7">
+                        <div class="d-flex align-items-center">
+                            <h3>
+                                <%= link_to "#{order.name}様", order_path(order), class:"h3" %>                
+                                <span class="badge rounded-pill badge-lg ms-3 <%= order.delivery_method == :takeout ? "btn-default" : "btn-success" %>"><%= order.delivery_method_i18n %></span>
+                            <h3>
+                        </div>
+
+                        <% order.unique_items.each do |item| %>
+                            <div class="ms-2 me-5 d-flex justify-content-between align-items-center">
+                                <p><%= item.name %></p>
+                                <p><%= total_amount(item, order) %>個</p>
+                            </div>
+                        <% end %>
+
+                        <div class="text-end me-5 mt-3">
+                            <h5 class="fw-bold">合計金額: <%= calculate_total_price(order.items) %>円</h5>
+                        </div>
+
+                    </div>
+
+                    <div class="align-items-end col-md-3">
+                        <% if !completable?(order) %>
+                            <%= form_with(model: order, url: order_path(order), local: true) do |form| %>
+                                <%= form.hidden_field :status, value: complete_status(order.delivery_method) %>
+                                <%= form.submit complete_btn(order.delivery_method), class:"btn btn-outline-default" %>
+                            <% end %>
+                        
+                        <% else %>
+                            <p class="h3 text-white fw-bold mt-5"><%= order.status_i18n %></p>
+                        <% end %>
+                    </div>
+
+                </div>
+                
+            </div>
+        </div>
+
+    <% end %>
+</div>

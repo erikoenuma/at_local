@@ -1,0 +1,41 @@
+<section class="vh-100">
+  <div class="container py-5 h-100">
+    <div class="row justify-content-center align-items-center">
+    <%= form_with(model: @sale_item, url: configure_sale_items_items_path(@shop), method: :put, local: true) do |form| %>
+
+        <div class="d-flex ms-5 mb-5">
+            <h1>特売商品編集</h1>
+            <%= form.submit '保存する', class:"btn btn-default btn-sm ms-5" %>
+        </div>
+
+        <div class="container table-background col-md-10">
+            <table class="table">
+                <thead class="thead-order">
+                <tr>
+                    <th class="col-md-1"></th>
+                    <th><%= Item.human_attribute_name :name %></th>
+                    <th><%= Item.human_attribute_name :counts %></th>
+                    <th></th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <% @items.each do |item| %>
+                    <tr>
+                        <td><img class="card-img-top" src=<%= rails_blob_path(item.image) if item.image.present? %>></td>
+                        <td><%= item.name %></td>
+                        <td><%= item.counts %></td>
+                        <td><%= form.check_box :item_id, {class:"form-check-input", multiple:true, checked: @sale_items.include?(item) }, item.id, nil %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+        
+        </div>
+
+        <% end %>
+
+
+    </div>
+  </div>
+</section>

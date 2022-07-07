@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_30_042330) do
+ActiveRecord::Schema.define(version: 2022_07_06_064507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,15 @@ ActiveRecord::Schema.define(version: 2022_06_30_042330) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["shop_id"], name: "index_carts_on_shop_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_favorites_on_item_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
@@ -129,6 +138,15 @@ ActiveRecord::Schema.define(version: 2022_06_30_042330) do
     t.string "area", null: false
   end
 
+  create_table "sale_items", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "shop_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_sale_items_on_item_id"
+    t.index ["shop_id"], name: "index_sale_items_on_shop_id"
+  end
+
   create_table "shopping_streets", force: :cascade do |t|
     t.bigint "place_id", null: false
     t.string "name", null: false
@@ -169,6 +187,8 @@ ActiveRecord::Schema.define(version: 2022_06_30_042330) do
   add_foreign_key "cart_items", "items"
   add_foreign_key "carts", "shops"
   add_foreign_key "carts", "users"
+  add_foreign_key "favorites", "items"
+  add_foreign_key "favorites", "users"
   add_foreign_key "items", "shops"
   add_foreign_key "messages", "orders"
   add_foreign_key "notifications", "orders"
@@ -176,6 +196,8 @@ ActiveRecord::Schema.define(version: 2022_06_30_042330) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "shops"
   add_foreign_key "orders", "users"
+  add_foreign_key "sale_items", "items"
+  add_foreign_key "sale_items", "shops"
   add_foreign_key "shopping_streets", "places"
   add_foreign_key "shops", "places"
   add_foreign_key "shops", "shopping_streets"

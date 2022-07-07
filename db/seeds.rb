@@ -310,3 +310,19 @@ Message.all.each do |message|
         Notification.create!(sender_id: message.order.shop.user.id, receiver_id: message.order.user.id, order_id: message.order.id, action: :message)
     end
 end
+
+Shop.find(1).sale_items.create!(item_id: 1)
+Shop.find(1).sale_items.create!(item_id: 2)
+Shop.find(1).sale_items.create!(item_id: 3)
+Shop.find(1).sale_items.create!(item_id: 4)
+# Shop.find(1).sale_items.create!(item_id: 5)
+Shop.find(4).sale_items.create!(item_id: 6)
+Shop.find(4).sale_items.create!(item_id: 7)
+Shop.find(4).sale_items.create!(item_id: 8)
+Shop.find(4).sale_items.create!(item_id: 9)
+# Shop.find(4).sale_items.create!(item_id: 10)
+Shop.find(5).sale_items.create!(item_id: 11)
+Shop.find(5).sale_items.create!(item_id: 12)
+Shop.find(5).sale_items.create!(item_id: 13)
+Shop.find(5).sale_items.create!(item_id: 14)
+# Shop.find(5).sale_items.create!(item_id: 15)

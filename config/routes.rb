@@ -8,6 +8,8 @@ Rails.application.routes.draw do
         collection do
           get :stock
           put :update_stock
+          get :sale_items
+          put :configure_sale_items
         end
         member do 
           post '/carts/add', to: 'carts#add'
@@ -36,6 +38,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :reset_conditions
+      get :today
     end
   end
   

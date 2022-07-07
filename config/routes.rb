@@ -38,6 +38,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :reset_conditions
+      get :today
     end
   end
   

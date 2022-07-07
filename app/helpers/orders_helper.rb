@@ -43,4 +43,38 @@ module OrdersHelper
         end
     end
 
+    def complete_btn(delivery_method)
+        case delivery_method
+        when 'takeout' then
+            return '受け渡し済みにする'
+        when 'delivery' then
+            return '配送済みにする'
+        end
+    end
+
+    def complete_status(delivery_method)
+        case delivery_method
+        when 'takeout' then
+            return 'delivered'
+        when 'delivery' then
+            return 'sent'
+        end
+    end
+
+    def today_order_bg(order)
+        # 通知があるやつ
+        if order.notifications.where(receiver_id:current_user.id, checked: false).length > 0
+            return 'bg-warning'
+        # 何もアクションする必要がないもの
+        elsif (order.status == 'delivered') || (order.status == 'sent') || (order.status == 'canceled')
+            return 'bg-secondary'
+        else
+            return nil    
+        end
+    end
+
+    def unchecked_notifications(order)
+        order.notifications.where(receiver_id: current_user.id, checked: false)
+    end
+
 end

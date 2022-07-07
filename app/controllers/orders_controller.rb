@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy cancel finish_purchase ]
-  before_action :user_account_required, except: [:index, :show, :update, :cancel, :reset_conditions]
+  before_action :user_account_required, except: [:index, :show, :update, :cancel, :reset_conditions, :today]
 
   # GET /orders or /orders.json
   def index
@@ -134,6 +134,12 @@ class OrdersController < ApplicationController
         format.html { redirect_to order_url(@order), status: :unprocessable_entity }
       end
     end
+  end
+
+  def today
+    yet = current_user.shop.orders.select{|p| p.today? && p.status != ('delivered' || 'sent') }.sort_by{|p| p.deliver_date }
+    done = current_user.shop.orders.select{|p| p.today? && p.status == ('delivered' || 'sent') }.sort_by{|p| p.deliver_date }
+    @orders = yet + done
   end
 
   private

@@ -38,4 +38,10 @@ class Order < ApplicationRecord
     return self.items.uniq
   end
 
+  # 今日の注文をソートする
+  def today?
+    self.deliver_date.year == Date.today.year &&
+    self.deliver_date.month == Date.today.month &&
+    self.deliver_date.day == Date.today.day
+  end
 end

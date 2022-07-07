@@ -1,8 +1,12 @@
-<h1 class="col-xl-9 my-4">受注一覧</h1>
+<div class="col-xl-9 d-flex align-items-center">
+    <h1 class="my-4">受注一覧</h1>
+    <%= link_to '今日の受注一覧', today_orders_path, class:"btn btn-default h-50 ms-5" %>
+</div>
     <div class="col-xl-9">
 
     <div class="shop-intro mb-5">
         <h5 class="fw-bold">条件検索</h5>
+
         <%# ransack %>
         <%= search_form_for @q, url: orders_path do |f|%>
 
@@ -73,5 +77,7 @@
             </table>
         </div>
     <% end %>
+
+    </div>
 
 </div>

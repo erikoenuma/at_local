@@ -1,0 +1,13 @@
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row justify-content-center align-items-center">
+            <div class="d-flex justify-content-center align-items-center">
+                <h1 class="my-4 text-center"><%= t('.title') %></h1>
+                <%= link_to '全受注一覧を見る', orders_path, class:"btn btn-default ms-5 h-50" %>
+            </div>
+
+            <%= render '/orders/shop/task', orders: @orders %>
+        </div>
+
+    </div>
+</section>

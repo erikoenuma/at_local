@@ -229,9 +229,9 @@ statuses = [0, 3, 4, 5]
 
 for i in 6..10
     [
-        ["#{i}", "1", "山田#{i}太郎", 0, 792, memos.shuffle.first, 0, Time.current + 24*60*60, statuses.shuffle.first ],
-        ["#{i}", "4", "山田#{i}太郎", 0, 4100, memos.shuffle.first, 0, Time.current + 24*60*60, statuses.shuffle.first ],
-        ["#{i}", "5", "山田#{i}太郎", 0, 3390, memos.shuffle.first, 0, Time.current + 24*60*60, statuses.shuffle.first ]
+        ["#{i}", "1", "山田#{i}太郎", 0, 792, memos.shuffle.first, 0, Time.current + 60*60*3, statuses.shuffle.first ],
+        ["#{i}", "4", "山田#{i}太郎", 0, 4100, memos.shuffle.first, 0, Time.current + 60*60*1, statuses.shuffle.first ],
+        ["#{i}", "5", "山田#{i}太郎", 0, 3390, memos.shuffle.first, 0, Time.current + 60*60*7, statuses.shuffle.first ]
     ].each do |user_id, shop_id, name, payment_method, total_price, memo, delivery_method, deliver_date, status|
         Order.create!({
             user_id: user_id,

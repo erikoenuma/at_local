@@ -5,7 +5,7 @@
         <% if shop_user?(current_user) %>
           <%= render '/orders/shop/index', orders: @shop_orders %>
         <% else %>
-          <%= render '/orders/user/index', orders: @user_orders %>
+          <%= render '/orders/user/index', orders: @user_orders, today_orders: @today_orders %>
         <% end %>
 
     </div>

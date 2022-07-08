@@ -1,3 +1,12 @@
+<h1 class="col-xl-9 my-4">今日受け取りの注文</h1>
+<div class="col-xl-9">
+    <% if today_orders.length == 0 %>
+        <p>今日の注文はありません</p>
+    <% else %>
+        <%= render 'orders/user/task', orders: today_orders %>
+    <% end %>
+</div>
+
 <h1 class="col-xl-9 my-4">注文履歴</h1>
     <div class="col-xl-9">
 
@@ -41,6 +50,13 @@
 
                     <div class="text-end me-5 mt-3">
                         <p>合計金額: <%= calculate_total_price(order.items) %>円</p>
+                    </div>
+
+                    <div class="mt-3">
+                        <p>受け取り日時: <%= datetime_string(order.deliver_date) %></p>
+                        <% if order.delivery_method == 'delivery' %>
+                            <p>配送先: <%= order.address %></p>
+                        <% end %>
                     </div>
 
                     <div class="text-end me-5 mt-3">

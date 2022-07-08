@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: %i[ show edit update destroy cancel finish_purchase ]
   before_action :user_account_required, except: [:index, :show, :update, :cancel, :reset_conditions, :today]
+  before_action :shop_account_required, only: [:today]
 
   # GET /orders or /orders.json
   def index
@@ -8,6 +9,7 @@ class OrdersController < ApplicationController
     @user_orders = current_user.orders.sort do |a,b|
       b[:created_at] <=> a[:created_at]
     end
+    @today_orders = current_user.orders.select{|p| p.today? }.sort_by{|p| p.deliver_date}
 
     @q = Order.ransack(params[:q])
     if params[:q].nil? && shop_user?(current_user)
@@ -141,6 +143,7 @@ class OrdersController < ApplicationController
     end
   end
 
+  # 店舗側　今日の受注一覧
   def today
     yet = current_user.shop.orders.select{|p| p.today? && !p.completed? }.sort_by{|p| p.deliver_date }
     done = current_user.shop.orders.select{|p| p.today? && p.completed? }.sort_by{|p| p.deliver_date }

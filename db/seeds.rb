@@ -51,22 +51,23 @@ end
 end
 
 [
-    ["〇〇八百屋", "testshop@test.com", "password", "password"],
-    ["△△商店", "testshop2@test.com", "password", "password"],
-    ["◇◇花屋", "testshop3@test.com", "password", "password"],
-    ["☆魚屋", "testshop4@test.com", "password", "password"],
-    ["〇×精肉店", "testshop5@test.com", "password", "password"],
-    ["testuser", "testuser@test.com", "password", "password"],
-    ["testuser2", "testuser2@test.com", "password", "password"],
-    ["testuser3", "testuser3@test.com", "password", "password"],
-    ["testuser4", "testuser4@test.com", "password", "password"],
-    ["testuser5", "testuser5@test.com", "password", "password"],
-].each do |name, email, password, password_confirmation|
+    ["〇〇八百屋", "testshop@test.com", "password", "password", nil],
+    ["△△商店", "testshop2@test.com", "password", "password", nil],
+    ["◇◇花屋", "testshop3@test.com", "password", "password", nil],
+    ["☆魚屋", "testshop4@test.com", "password", "password", nil],
+    ["〇×精肉店", "testshop5@test.com", "password", "password", nil],
+    ["testuser", "testuser@test.com", "password", "password", "14"],
+    ["testuser2", "testuser2@test.com", "password", "password", "14"],
+    ["testuser3", "testuser3@test.com", "password", "password", "14"],
+    ["testuser4", "testuser4@test.com", "password", "password", "14"],
+    ["testuser5", "testuser5@test.com", "password", "password", "14"],
+].each do |name, email, password, password_confirmation, place_id|
     User.create!({ 
         name: name,
         email: email,
         password: password,
-        password_confirmation: password_confirmation
+        password_confirmation: password_confirmation,
+        place_id: place_id
      })
 end
 

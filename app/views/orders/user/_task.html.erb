@@ -49,7 +49,7 @@
 
                 <div class="align-items-end col-md-3">
                     <% if completable?(order) %>
-                        <%= link_to '取引完了', finish_purchase_order_path(order),method: :put, class:"btn btn-outline-default"%>
+                        <%= link_to '取引完了する', finish_purchase_order_path(order),method: :put, class:"btn btn-outline-default"%>
                     <% else %>
                         <p class="h3 text-secondary fw-bold mt-5 bg-white p-2"><%= order.status_i18n %></p>
                     <% end %>

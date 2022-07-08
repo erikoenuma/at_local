@@ -2,7 +2,7 @@ module OrdersHelper
 
     # 合計金額
     def calculate_total_price(items)
-        items.map { |item| item.price }.sum
+        items.sum(:price)
     end
 
     # 数量
@@ -13,6 +13,17 @@ module OrdersHelper
     # 商品ごとの小計
     def calculate_subtotal_price(item, cart)
         cart.items.where(id: item.id).map { |item| item.price }.sum
+    end
+
+    # 日にちごとの合計売上
+    def calculate_daily_total_price(orders)
+        # キャンセルされた注文を除く
+        items = orders.select{|p| p.status != 'canceled' }.map{|p| p.items }
+        result = 0
+        items.each do |item|
+            result += calculate_total_price(item)
+        end
+        return result
     end
 
     # キャンセル可能かどうか

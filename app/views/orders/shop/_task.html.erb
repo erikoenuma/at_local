@@ -23,7 +23,7 @@
                         <div class="d-flex align-items-center">
                             <h3>
                                 <%= link_to "#{order.name}様", order_path(order), class:"h3" %>                
-                                <span class="badge rounded-pill badge-lg ms-3 <%= order.delivery_method == :takeout ? "btn-default" : "btn-success" %>"><%= order.delivery_method_i18n %></span>
+                                <span class="badge rounded-pill badge-lg ms-3 <%= (order.delivery_method == 'takeout') ? "btn-default" : "btn-success" %>"><%= order.delivery_method_i18n %></span>
                             <h3>
                         </div>
 
@@ -37,6 +37,10 @@
                         <div class="text-end me-5 mt-3">
                             <h5 class="fw-bold">合計金額: <%= calculate_total_price(order.items) %>円</h5>
                         </div>
+
+                        <% if order.delivery_method == 'delivery' %>
+                            <p class="mt-3">配送先：<%= order.address %></p>
+                        <% end %>
 
                     </div>
 

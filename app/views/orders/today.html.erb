@@ -6,7 +6,13 @@
                 <%= link_to '全受注一覧を見る', orders_path, class:"btn btn-default ms-5 h-50" %>
             </div>
 
-            <%= render '/orders/shop/task', orders: @orders %>
+            <% if @orders.length > 0 %>
+                <h5 class="text-center mb-5">売り上げ：<%= calculate_daily_total_price(@orders) %>円</h5>
+                <%= render '/orders/shop/task', orders: @orders %>
+
+            <% else %>
+                <p class="text-center">本日の受注はありません</p>
+            <% end %>
         </div>
 
     </div>
